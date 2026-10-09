@@ -158,7 +158,7 @@ export function Footer() {
             <div>
               Diseño y desarrollo·{" "}
               <a
-                href="https://www.linkedin.com/in/alejandra-ranzuglia/"
+                href="https://alejandraranzuglia.com.ar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-yellow-400 transition-colors"
