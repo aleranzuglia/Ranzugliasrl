@@ -1,3 +1,5 @@
+import { HANOMAG_PRODUCTS } from './hanomag';
+import { MICHIGAN_PRODUCTS } from './michigan';
 import bertiniNeu from '../../imports/bertini/bertini-Modelo-16mil-1.png';
 import gherardiDrill600 from '../../imports/gherardi/gherardi-AIR-DRILL-G-600.png';
 import usadoChasisG600 from '../../imports/usados/Chasis-G600.jpg';
@@ -103,7 +105,7 @@ import tecnocarRT from '../../imports/tecnocar/retroexcavadora-03-1.webp';
 export interface Product {
   id: string;
   estado: 'nuevo' | 'usado';
-  categoria: 'tractor-pauny' | 'tractor-gravo' | 'sembradora' | 'rastra' | 'acoplado' | 'implemento' | 'vial';
+  categoria: 'tractor' | 'pala' | 'elevador' | 'sembradora' | 'rastra' | 'acoplado' | 'implemento' | 'vial';
   marca: string;
   nombre: string;
   hp?: string;
@@ -115,9 +117,16 @@ export interface Product {
   cabina?: string;
   origen?: string;
   fotoCompleta?: boolean;
+  specs?: { label: string; value: string }[];
 }
 
 export const CATALOG: Product[] = [
+
+  // ── HANOMAG (tractores y palas, ver hanomag.ts) ──────────────────────
+  ...HANOMAG_PRODUCTS,
+
+  // ── MICHIGAN (autoelevadores, línea eléctrica y palas, ver michigan.ts) ──
+  ...MICHIGAN_PRODUCTS,
 
   // ── USADOS ───────────────────────────────────────────────────────────
   {
@@ -154,7 +163,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p540c',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Bravo',
     nombre: '540 C Bravo',
     hp: '220 HP',
@@ -168,7 +177,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p580ie',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Bravo',
     nombre: '580 ie Bravo',
     hp: '280 HP',
@@ -182,7 +191,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p710ie',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Bravo',
     nombre: '710 ie Bravo',
     hp: '370 HP',
@@ -196,7 +205,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p780ie',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Bravo',
     nombre: '780 ie Bravo',
     hp: '430 HP',
@@ -210,7 +219,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p250a',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Estándar',
     nombre: '250 A',
     hp: '170 HP',
@@ -224,7 +233,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p180a',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Estándar',
     nombre: '180 A',
     hp: '125 HP',
@@ -240,7 +249,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g504d',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: '504D',
     hp: '50 HP',
@@ -254,7 +263,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g604',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWB 604',
     hp: '60 HP',
@@ -268,7 +277,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g904',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWB 904',
     hp: '90 HP',
@@ -282,7 +291,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g1004',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWY 1004',
     hp: '100 HP',
@@ -296,7 +305,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g1104',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWD 1104',
     hp: '110 HP',
@@ -310,7 +319,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g1304',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWC 1304',
     hp: '130 HP',
@@ -324,7 +333,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g1604',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWC 1604',
     hp: '165 HP',
@@ -338,7 +347,7 @@ export const CATALOG: Product[] = [
   {
     id: 'g1854',
     estado: 'nuevo',
-    categoria: 'tractor-gravo',
+    categoria: 'tractor',
     marca: 'Gravo',
     nombre: 'HWC 1854',
     hp: '185 HP',
@@ -1478,11 +1487,35 @@ export const CATALOG: Product[] = [
 ];
 
 export const CATEGORY_LABELS: Record<Product['categoria'], string> = {
-  'tractor-pauny': 'Tractores Pauny',
-  'tractor-gravo': 'Tractores Gravo',
+  'tractor': 'Tractores',
+  'pala': 'Palas cargadoras',
+  'elevador': 'Elevadores',
+  'vial': 'Equipos Viales',
   'sembradora': 'Sembradoras',
   'rastra': 'Rastras',
   'acoplado': 'Acoplados',
   'implemento': 'Implementos',
-  'vial': 'Equipos Viales',
 };
+
+// Marcas con representación oficial: se muestran primero en los filtros y en los selectores.
+export const OFFICIAL_BRANDS = ['Hanomag', 'Michigan'];
+
+const BRAND_ALIASES: Record<string, string> = {
+  'TATU Marchesan': 'TATU',
+};
+
+// La marca es la parte de `marca` anterior al " · " (ej: 'Pauny · Bravo' → 'Pauny').
+export function brandOf(product: Product): string {
+  const brand = product.marca.split(' · ')[0].trim();
+  return BRAND_ALIASES[brand] ?? brand;
+}
+
+// Ordena marcas: oficiales primero, luego por cantidad de productos y por nombre.
+export function sortBrands(counts: Map<string, number>): string[] {
+  return Array.from(counts.keys()).sort((a, b) => {
+    const oa = OFFICIAL_BRANDS.indexOf(a);
+    const ob = OFFICIAL_BRANDS.indexOf(b);
+    if (oa !== -1 || ob !== -1) return (oa === -1 ? 99 : oa) - (ob === -1 ? 99 : ob);
+    return (counts.get(b) ?? 0) - (counts.get(a) ?? 0) || a.localeCompare(b, 'es');
+  });
+}

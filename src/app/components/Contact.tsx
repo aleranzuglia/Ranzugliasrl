@@ -9,7 +9,7 @@ import {
   Instagram,
   Clock,
 } from "lucide-react";
-import { CATALOG } from "../data/catalog";
+import { CATALOG, CATEGORY_LABELS, brandOf, sortBrands } from "../data/catalog";
 
 export function Contact() {
   const [formState, setFormState] = useState({
@@ -27,12 +27,7 @@ export function Contact() {
 
   const buildWhatsAppText = () => {
     const tipoLabels: Record<string, string> = {
-      "tractor-pauny": "Tractores Pauny",
-      "tractor-gravo": "Tractores Gravo",
-      sembradora: "Sembradoras",
-      rastra: "Rastras",
-      acoplado: "Acoplados",
-      implemento: "Implementos",
+      ...CATEGORY_LABELS,
       usado: "Maquinaria usada",
       repuesto: "Repuestos",
       otro: "Otro",
@@ -106,14 +101,24 @@ export function Contact() {
     }, 5000);
   };
 
-  const CATALOG_CATEGORIES = ['tractor-pauny', 'tractor-gravo', 'sembradora', 'rastra', 'acoplado', 'implemento'];
+  const CATALOG_CATEGORIES = Object.keys(CATEGORY_LABELS);
 
-  const modeloOptions = useMemo(() => {
+  // Modelos del catálogo para la categoría elegida, agrupados por marca (oficiales primero)
+  const modeloGroups = useMemo(() => {
     if (!CATALOG_CATEGORIES.includes(formState.tipo)) return [];
-    return CATALOG
+    const byBrand = new Map<string, string[]>();
+    CATALOG
       .filter(p => p.categoria === formState.tipo && p.estado === 'nuevo')
-      .map(p => p.nombre);
+      .forEach(p => {
+        const brand = brandOf(p);
+        byBrand.set(brand, [...(byBrand.get(brand) ?? []), p.nombre]);
+      });
+    const counts = new Map(Array.from(byBrand, ([brand, nombres]) => [brand, nombres.length] as [string, number]));
+    return sortBrands(counts).map(brand => ({ brand, modelos: byBrand.get(brand) ?? [] }));
   }, [formState.tipo]);
+
+  // Categorías sin productos cargados todavía (ej: equipos viales): se pide el equipo en texto libre
+  const sinCatalogo = CATALOG_CATEGORIES.includes(formState.tipo) && modeloGroups.length === 0;
 
   const locales = [
     {
@@ -340,24 +345,11 @@ export function Contact() {
                         <option value="" className="text-zinc-400">
                           — Seleccioná una categoría —
                         </option>
-                        <option value="tractor-pauny" className="text-zinc-950 font-medium">
-                          Tractores Pauny
-                        </option>
-                        <option value="tractor-gravo" className="text-zinc-950 font-medium">
-                          Tractores Gravo
-                        </option>
-                        <option value="sembradora" className="text-zinc-950 font-medium">
-                          Sembradoras
-                        </option>
-                        <option value="rastra" className="text-zinc-950 font-medium">
-                          Rastras
-                        </option>
-                        <option value="acoplado" className="text-zinc-950 font-medium">
-                          Acoplados
-                        </option>
-                        <option value="implemento" className="text-zinc-950 font-medium">
-                          Implementos
-                        </option>
+                        {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
+                          <option key={value} value={value} className="text-zinc-950 font-medium">
+                            {label}
+                          </option>
+                        ))}
                         <option value="usado" className="text-zinc-950 font-medium">
                           Maquinaria usada
                         </option>
@@ -370,7 +362,7 @@ export function Contact() {
                       </select>
                     </div>
 
-                    {modeloOptions.length > 0 && (
+                    {modeloGroups.length > 0 && (
                       <div>
                         <label
                           htmlFor="modelo"
@@ -396,10 +388,14 @@ export function Contact() {
                           <option value="" className="text-zinc-400">
                             — Seleccioná un modelo —
                           </option>
-                          {modeloOptions.map((m) => (
-                            <option key={m} value={m} className="text-zinc-950 font-medium">
-                              {m}
-                            </option>
+                          {modeloGroups.map(({ brand, modelos }) => (
+                            <optgroup key={brand} label={brand}>
+                              {modelos.map((m) => (
+                                <option key={m} value={`${brand} ${m}`} className="text-zinc-950 font-medium">
+                                  {m}
+                                </option>
+                              ))}
+                            </optgroup>
                           ))}
                         </select>
                       </div>
@@ -426,6 +422,27 @@ export function Contact() {
                       </div>
                     )}
 
+                    {sinCatalogo && (
+                      <div>
+                        <label
+                          htmlFor="modelo"
+                          className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        >
+                          ¿Qué equipo te interesa?
+                        </label>
+                        <input
+                          id="modelo"
+                          type="text"
+                          value={formState.modelo}
+                          onChange={(e) =>
+                            setFormState({ ...formState, modelo: e.target.value })
+                          }
+                          placeholder="Ej: motoniveladora, excavadora, retropala..."
+                          className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                        />
+                      </div>
+                    )}
+
                     {formState.tipo === "repuesto" && (
                       <div>
                         <label
@@ -441,7 +458,7 @@ export function Contact() {
                           onChange={(e) =>
                             setFormState({ ...formState, modelo: e.target.value })
                           }
-                          placeholder="Ej: Pauny 580 ie, Gravo HWB 904..."
+                          placeholder="Ej: Hanomag TR 85, Gherardi G-600..."
                           className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
                         />
                       </div>

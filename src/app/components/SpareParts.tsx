@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Droplets, Wrench, Disc3, MessageCircle } from "lucide-react";
+import { Droplets, Wrench, Disc3 } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
 const categories = [
   {
@@ -25,7 +26,7 @@ const categories = [
     headline: "Piezas certificadas, siempre disponibles",
     description:
       "Stock de repuestos originales para todas las marcas que comercializamos. Cada pieza está certificada de fábrica para garantizar el rendimiento y la vida útil de tu maquinaria.",
-    highlights: ["Pauny", "Gravo", "Gherardi", "Pampero", "SYL", "Belén"],
+    highlights: ["Hanomag", "Michigan", "Pauny", "Gravo", "Gherardi", "Pampero", "SYL", "Belén"],
     featured: false,
     paymentDays: null,
   },
@@ -188,9 +189,9 @@ export function SpareParts() {
             href="https://wa.me/5492923515685?text=Hola%2C%20quiero%20consultar%20sobre%20repuestos%20y%20suministros"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2.5 bg-yellow-400 text-zinc-950 px-6 py-3 font-semibold text-sm hover:bg-yellow-300 transition-colors"
+            className="shrink-0 flex items-center gap-2.5 bg-[#25D366] text-white px-6 py-3 font-semibold text-sm hover:bg-[#20ba57] transition-colors"
           >
-            <MessageCircle className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4" />
             Consultar disponibilidad
           </a>
         </motion.div>

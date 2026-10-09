@@ -8,8 +8,18 @@ import {
   Check,
   ArrowRight,
 } from "lucide-react";
+import { motion } from "motion/react";
 import { toast } from "sonner";
-import { CATALOG, CATEGORY_LABELS, Product } from "../data/catalog";
+import {
+  CATALOG,
+  CATEGORY_LABELS,
+  OFFICIAL_BRANDS,
+  Product,
+  brandOf,
+  sortBrands,
+} from "../data/catalog";
+import { FiltroCatalogo, MARCAS_OFICIALES } from "../data/marcas";
+import { BrandMoreInfo } from "./OfficialBrands";
 import { ProductCard } from "./ProductCard";
 import { ProductModal } from "./ProductModal";
 import { CompareDrawer } from "./CompareDrawer";
@@ -19,11 +29,18 @@ import sinResultados from "../../imports/no-se-encuentra.svg?url";
 interface CatalogProps {
   compareProducts: Product[];
   setCompareProducts: (products: Product[]) => void;
+  // Filtro pedido desde otra sección (ej: links de la sección Representación oficial)
+  filtroExterno?: FiltroCatalogo | null;
 }
 
-export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
+export function Catalog({
+  compareProducts,
+  setCompareProducts,
+  filtroExterno,
+}: CatalogProps) {
   const [activeTab, setActiveTab] = useState<"nuevo" | "usado">("nuevo");
   const [activeCategory, setActiveCategory] = useState<string>("todos");
+  const [activeBrand, setActiveBrand] = useState<string>("todas");
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -39,6 +56,10 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
       if (activeCategory !== "todos" && product.categoria !== activeCategory)
         return false;
 
+      // Filter by brand (second level, within the category)
+      if (activeBrand !== "todas" && brandOf(product) !== activeBrand)
+        return false;
+
       // Filter by search
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
@@ -52,21 +73,72 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
 
       return true;
     });
-  }, [activeTab, activeCategory, searchQuery]);
+  }, [activeTab, activeCategory, activeBrand, searchQuery]);
+
+  // Aplica un filtro pedido desde otra sección y lleva a la vista al catálogo
+  useEffect(() => {
+    if (!filtroExterno) return;
+    setActiveTab("nuevo");
+    setActiveCategory(filtroExterno.categoria);
+    setActiveBrand(filtroExterno.marca);
+    setSearchQuery(filtroExterno.busqueda ?? "");
+    const timer = setTimeout(() => {
+      const el = document.getElementById("catalogo");
+      if (el) {
+        window.scrollTo({ top: el.offsetTop - 90, behavior: "smooth" });
+      }
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [filtroExterno]);
 
   // Reset items to show when filters change
   useEffect(() => {
     setItemsToShow(12);
-  }, [activeTab, activeCategory, searchQuery]);
+  }, [activeTab, activeCategory, activeBrand, searchQuery]);
 
   const visibleProducts = filteredProducts.slice(0, itemsToShow);
   const hasMore = filteredProducts.length > itemsToShow;
   const nextBatch = Math.min(itemsToShow + 12, filteredProducts.length);
 
-  const categories = useMemo(() => {
-    const cats = new Set(CATALOG.map((p) => p.categoria));
-    return Array.from(cats);
-  }, []);
+  // First level: categories (by machine type) that have products in the active tab
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    CATALOG.filter((p) => p.estado === activeTab).forEach((p) =>
+      counts.set(p.categoria, (counts.get(p.categoria) ?? 0) + 1),
+    );
+    return counts;
+  }, [activeTab]);
+
+  const categories = useMemo(
+    () =>
+      Object.keys(CATEGORY_LABELS).filter((cat) => categoryCounts.has(cat)),
+    [categoryCounts],
+  );
+
+  const tabTotal = useMemo(
+    () => Array.from(categoryCounts.values()).reduce((a, b) => a + b, 0),
+    [categoryCounts],
+  );
+
+  // Second level: brands within the selected category
+  const brandCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    if (activeCategory === "todos") return counts;
+    CATALOG.filter(
+      (p) => p.estado === activeTab && p.categoria === activeCategory,
+    ).forEach((p) => {
+      const brand = brandOf(p);
+      counts.set(brand, (counts.get(brand) ?? 0) + 1);
+    });
+    return counts;
+  }, [activeTab, activeCategory]);
+
+  const brands = useMemo(() => sortBrands(brandCounts), [brandCounts]);
+
+  const selectCategory = (cat: string) => {
+    setActiveCategory(cat);
+    setActiveBrand("todas");
+  };
 
   const toggleCompare = (product: Product) => {
     if (compareProducts.find((p) => p.id === product.id)) {
@@ -104,7 +176,7 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
             <button
               onClick={() => {
                 setActiveTab("nuevo");
-                setActiveCategory("todos");
+                selectCategory("todos");
                 setSearchQuery("");
               }}
               className={`px-8 py-3 text-sm font-semibold tracking-wider uppercase transition-colors cursor-pointer ${
@@ -118,7 +190,7 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
             <button
               onClick={() => {
                 setActiveTab("usado");
-                setActiveCategory("todos");
+                selectCategory("todos");
                 setSearchQuery("");
               }}
               className={`px-8 py-3 text-sm font-semibold tracking-wider uppercase transition-colors cursor-pointer ${
@@ -158,60 +230,85 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap gap-2">
               <button
-                onClick={() => setActiveCategory("todos")}
-                className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full border-2 transition-all cursor-pointer ${
+                onClick={() => selectCategory("todos")}
+                className={`px-3 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border-2 transition-all cursor-pointer ${
                   activeCategory === "todos"
                     ? "bg-zinc-950 text-white border-zinc-950"
                     : "bg-white text-zinc-950 border-zinc-950 hover:bg-zinc-100"
                 }`}
               >
-                Todos
+                Todos <span className="opacity-60">({tabTotal})</span>
               </button>
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full border-2 transition-all cursor-pointer ${
+                  onClick={() => selectCategory(cat)}
+                  className={`px-3 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border-2 transition-all cursor-pointer ${
                     activeCategory === cat
                       ? "bg-zinc-950 text-white border-zinc-950"
                       : "bg-white text-zinc-950 border-zinc-950 hover:bg-zinc-100"
                   }`}
                 >
-                  {CATEGORY_LABELS[cat as keyof typeof CATEGORY_LABELS]}
+                  {CATEGORY_LABELS[cat as keyof typeof CATEGORY_LABELS]}{" "}
+                  <span className="opacity-60">({categoryCounts.get(cat)})</span>
                 </button>
               ))}
             </div>
-
-            {/* View Mode Toggle */}
-            <div className="gap-2 bg-white border border-zinc-300 rounded-lg p-1 hidden md:flex">
-              <Tooltip text="Vista en cuadrícula" position="bottom">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded transition-colors cursor-pointer ${
-                    viewMode === "grid"
-                      ? "bg-zinc-950 text-white"
-                      : "text-zinc-400 hover:text-zinc-950"
-                  }`}
-                  aria-label="Vista en cuadrícula"
-                >
-                  <Grid3x3 className="w-5 h-5" />
-                </button>
-              </Tooltip>
-              <Tooltip text="Vista en lista" position="bottom">
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 rounded transition-colors cursor-pointer ${
-                    viewMode === "list"
-                      ? "bg-zinc-950 text-white"
-                      : "text-zinc-400 hover:text-zinc-950"
-                  }`}
-                  aria-label="Vista en lista"
-                >
-                  <List className="w-5 h-5" />
-                </button>
-              </Tooltip>
-            </div>
           </div>
+
+          {/* Brand filter (second level, within the selected category) */}
+          {brands.length > 1 && (
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex flex-wrap items-center gap-2"
+            >
+              {["todas", ...brands].map((brand) => {
+                const isActive = activeBrand === brand;
+                const isOfficial = OFFICIAL_BRANDS.includes(brand);
+                const count =
+                  brand === "todas"
+                    ? Array.from(brandCounts.values()).reduce((a, b) => a + b, 0)
+                    : brandCounts.get(brand);
+                return (
+                  <button
+                    key={brand}
+                    onClick={() => setActiveBrand(brand)}
+                    aria-pressed={isActive}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold tracking-wide rounded-full border transition-all cursor-pointer ${
+                      isActive
+                        ? brand === "Hanomag"
+                          ? "bg-red-600 text-white border-red-600 shadow-sm"
+                          : "bg-yellow-400 text-zinc-950 border-yellow-400 shadow-sm"
+                        : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-950"
+                    }`}
+                  >
+                    {brand === "todas" ? "Todas las marcas" : brand}
+                    <span className="opacity-60">({count})</span>
+                    {isOfficial && (
+                      <span
+                        className={`rounded-sm bg-zinc-950 px-1.5 py-0.5 text-[9px] font-black tracking-wider uppercase ${
+                          isActive && brand === "Hanomag" ? "text-white" : "text-yellow-400"
+                        }`}
+                      >
+                        Oficial
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
+
+          {/* Más modelos de la marca oficial elegida (enlace a su web) */}
+          {MARCAS_OFICIALES[activeBrand] && (
+            <BrandMoreInfo
+              key={activeBrand}
+              marca={MARCAS_OFICIALES[activeBrand]}
+            />
+          )}
         </div>
 
         {/* Results Count */}
@@ -220,6 +317,36 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
             Mostrando {visibleProducts.length} de {filteredProducts.length}{" "}
             {filteredProducts.length === 1 ? "producto" : "productos"}
           </p>
+
+          {/* View Mode Toggle */}
+          <div className="gap-2 bg-white border border-zinc-300 rounded-lg p-1 hidden md:flex">
+            <Tooltip text="Vista en cuadrícula" position="bottom">
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 rounded transition-colors cursor-pointer ${
+                  viewMode === "grid"
+                    ? "bg-zinc-950 text-white"
+                    : "text-zinc-400 hover:text-zinc-950"
+                }`}
+                aria-label="Vista en cuadrícula"
+              >
+                <Grid3x3 className="w-5 h-5" />
+              </button>
+            </Tooltip>
+            <Tooltip text="Vista en lista" position="bottom">
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded transition-colors cursor-pointer ${
+                  viewMode === "list"
+                    ? "bg-zinc-950 text-white"
+                    : "text-zinc-400 hover:text-zinc-950"
+                }`}
+                aria-label="Vista en lista"
+              >
+                <List className="w-5 h-5" />
+              </button>
+            </Tooltip>
+          </div>
         </div>
 
         {/* Products Grid/List */}
@@ -241,7 +368,7 @@ export function Catalog({ compareProducts, setCompareProducts }: CatalogProps) {
             <button
               onClick={() => {
                 setSearchQuery("");
-                setActiveCategory("todos");
+                selectCategory("todos");
                 setActiveTab("nuevo");
               }}
               className="bg-zinc-950 text-white px-6 py-3 font-semibold text-sm hover:bg-zinc-800 transition-colors cursor-pointer"

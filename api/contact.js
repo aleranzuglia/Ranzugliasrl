@@ -3,9 +3,12 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const TIPO_LABELS = {
-  "tractor-pauny": "Tractores Pauny",
-  "tractor-gravo": "Tractores Gravo",
+  tractor: "Tractores",
+  pala: "Palas cargadoras",
+  elevador: "Elevadores",
+  vial: "Equipos viales",
   sembradora: "Sembradoras",
+  rastra: "Rastras",
   acoplado: "Acoplados",
   implemento: "Implementos",
   usado: "Maquinaria usada",

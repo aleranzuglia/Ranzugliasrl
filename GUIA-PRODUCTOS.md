@@ -17,7 +17,7 @@ src/app/data/catalog.ts
 {
   id: 'producto-nuevo',                    // ID único (sin espacios ni tildes)
   estado: 'nuevo',                         // 'nuevo' o 'usado'
-  categoria: 'tractor-pauny',              // Ver categorías disponibles abajo
+  categoria: 'tractor',              // Ver categorías disponibles abajo
   marca: 'Pauny · Bravo',                  // Nombre de la marca
   nombre: '540 C Bravo',                   // Nombre del modelo
   hp: '220 HP',                            // Potencia (opcional)
@@ -33,12 +33,15 @@ src/app/data/catalog.ts
 ### Paso 3: Completá los datos
 
 **Categorías disponibles:**
-- `'tractor-pauny'` → Tractores Pauny
-- `'tractor-gravo'` → Tractores Gravo
+- `'tractor'` → Tractores (Hanomag, Pauny, Gravo...)
+- `'pala'` → Palas cargadoras (Hanomag, Michigan...)
+- `'elevador'` → Elevadores y autoelevadores (Hanomag, Michigan...)
 - `'sembradora'` → Sembradoras
 - `'acoplado'` → Acoplados
 - `'implemento'` → Implementos
 - `'vial'` → Equipos Viales
+
+**Marca:** el filtro de marca sale de `marca` (lo que va antes del ` · `). Ej: `'Pauny · Bravo'` → marca Pauny. Hanomag y Michigan se muestran primero con la etiqueta "Oficial" (`OFFICIAL_BRANDS` en `catalog.ts`).
 
 **Estado:**
 - `'nuevo'` → Aparece en la pestaña "Nuevos"
@@ -50,7 +53,7 @@ src/app/data/catalog.ts
 {
   id: 'p250a-nuevo',
   estado: 'nuevo',
-  categoria: 'tractor-pauny',
+  categoria: 'tractor',
   marca: 'Pauny · Estándar',
   nombre: '250 A',
   hp: '170 HP',
@@ -133,7 +136,7 @@ export const CATALOG: Product[] = [
   {
     id: 'p540c',
     estado: 'nuevo',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Bravo',
     nombre: '540 C Bravo',
     hp: '220 HP',
@@ -157,7 +160,7 @@ export const CATALOG: Product[] = [
   {
     id: 'usado-pauny-250',
     estado: 'usado',
-    categoria: 'tractor-pauny',
+    categoria: 'tractor',
     marca: 'Pauny · Estándar',
     nombre: '250 A — Usado 2019',
     hp: '170 HP',

@@ -1,3 +1,5 @@
+import hanomagLogo from "../../imports/hanomag/hanomag.png";
+import michiganLogo from "../../imports/michigan/michigan.png";
 import paunyLogo from "../../imports/pauny/pauny.png";
 import gherardiLogo from "../../imports/marcas/gherardi.png";
 import bertiniLogo from "../../imports/marcas/bertini.png";
@@ -17,6 +19,8 @@ interface Brand {
 }
 
 const brands: Brand[] = [
+  { name: "Hanomag",   image: hanomagLogo,   href: "https://www.hanomag.com.ar" },
+  { name: "Michigan",  image: michiganLogo,  href: "https://www.michiganweb.com.ar" },
   { name: "Pauny",     image: paunyLogo,     href: "https://www.pauny.com.ar" },
   { name: "GRAVO",     text: true },
   { name: "Gherardi",  image: gherardiLogo,  href: "https://www.gherardi.com.ar" },

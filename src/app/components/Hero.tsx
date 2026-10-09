@@ -1,7 +1,38 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import tractorImage from "../../imports/pauny/pauny-540C-Bravo.png";
 import bgHero from "../../imports/bg-hero.avif";
+
+// Tractor del hero: PNG recortado (fondo transparente) en src/imports/hanomag/hero-tractor.png (o .webp).
+// Mientras el archivo no exista, el hero se muestra sin tractor.
+const heroTractorImages = import.meta.glob("../../imports/hanomag/hero-tractor.{png,webp}", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+const tractorImage = Object.values(heroTractorImages)[0];
+
+// Ficha técnica del tractor del hero (datos de hanomag.com.ar/producto/47).
+interface HeroTractorSpec {
+  value: string;
+  unit?: string;
+  label: string;
+}
+interface HeroTractor {
+  name: string;
+  ref: string;
+  specs: HeroTractorSpec[];
+  detail: string;
+}
+const HERO_TRACTOR: HeroTractor = {
+  name: "Hanomag Stark 1400/4CA",
+  ref: "1400/4CA",
+  specs: [
+    { value: "140", unit: "HP", label: "Potencia" },
+    { value: "4,66", unit: "T", label: "Peso" },
+    { value: "140", unit: "L", label: "Tanque" },
+    { value: "16+8", label: "Velocidades" },
+  ],
+  detail: "Motor Yuchai 4 cil. · Cabina con aire acondicionado",
+};
 
 export function Hero() {
   const scrollToSection = (id: string) => {
@@ -81,7 +112,7 @@ export function Hero() {
             </h1>
 
             <p className="text-xl text-white/70 leading-relaxed mb-10 max-w-2xl">
-              Tractores Pauny, Gravo, sembradoras, acoplados e implementos.
+              Tractores Hanomag, maquinaria Michigan, sembradoras, acoplados e implementos.
               <span className="block mt-2 text-yellow-400 font-semibold">
                 + de 50 años de trayectoria en el agro argentino.
               </span>
@@ -105,35 +136,37 @@ export function Hero() {
           </motion.div>
 
           {/* Tractor Image - Right Side - MASSIVE with Floating Animation */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              y: [0, -20, 0],
-            }}
-            transition={{
-              opacity: { duration: 1, delay: 0.2 },
-              x: { duration: 1, delay: 0.2 },
-              y: {
-                duration: 5,
-                delay: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            }}
-            className="absolute -right-80 lg:-right-165 2xl:-right-115 top-[55%] -translate-y-1/2 w-full h-full lg:w-[1400px] lg:h-[1050px] xl:w-[1600px] xl:h-[1200px] hidden md:block pointer-events-none z-10"
-            style={{
-              filter:
-                "drop-shadow(0 40px 120px rgba(250, 204, 21, 0.3)) drop-shadow(0 0 60px rgba(250, 204, 21, 0.2))",
-            }}
-          >
-            <img
-              src={tractorImage}
-              alt="Pauny 540 C Bravo"
-              className="md:w-[60%] 2xl:w-3/4 h-full object-contain"
-            />
-          </motion.div>
+          {tractorImage && (
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                y: [0, -20, 0],
+              }}
+              transition={{
+                opacity: { duration: 1, delay: 0.2 },
+                x: { duration: 1, delay: 0.2 },
+                y: {
+                  duration: 5,
+                  delay: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+              className="absolute -right-16 xl:-right-8 2xl:right-0 top-[52%] -translate-y-1/2 w-[62%] 2xl:w-[58%] max-w-[1250px] h-[88vh] hidden md:flex items-center justify-center pointer-events-none z-10"
+              style={{
+                filter:
+                  "drop-shadow(0 40px 120px rgba(220, 38, 38, 0.45)) drop-shadow(0 0 60px rgba(239, 68, 68, 0.3))",
+              }}
+            >
+              <img
+                src={tractorImage}
+                alt={HERO_TRACTOR.name}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+          )}
 
           {/* Floating Technical Panel - Overlaying the tractor */}
           <motion.aside
@@ -144,79 +177,48 @@ export function Hero() {
               delay: 0.8,
               ease: "easeOut",
             }}
-            className="absolute bottom-8 right-8 w-120 bg-zinc-950/70 backdrop-blur-md border border-white/10 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
+            className="absolute bottom-8 right-8 w-120 bg-zinc-950/70 backdrop-blur-md border border-red-500/25 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
           >
             <div className="flex items-center justify-between mb-5">
-              <span className="text-xs font-bold tracking-[0.28em] text-yellow-400">
+              <span className="text-xs font-bold tracking-[0.28em] text-red-500">
                 FICHA TÉCNICA
               </span>
               <span className="text-xs font-mono text-white/50">
-                REF. 540C
+                REF. {HERO_TRACTOR.ref}
               </span>
             </div>
 
-            <div className="h-px bg-yellow-400/50 mb-5" />
+            <div className="h-px bg-red-600/60 mb-5" />
 
-            <div className="grid grid-cols-4 gap-4 mb-5">
-              <div>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-black text-3xl text-white">
-                    220
-                  </span>
-                  <span className="text-xs text-yellow-400 tracking-wider font-bold">
-                    HP
-                  </span>
+            <div className="grid grid-cols-4 gap-4 mb-4">
+              {HERO_TRACTOR.specs.map((spec) => (
+                <div key={spec.label}>
+                  <div className="flex items-baseline gap-1 mb-1">
+                    <span className="font-black text-3xl text-white">
+                      {spec.value}
+                    </span>
+                    {spec.unit && (
+                      <span className="text-xs text-red-500 tracking-wider font-bold">
+                        {spec.unit}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-[10px] text-white/50 tracking-wide uppercase">
+                    {spec.label}
+                  </div>
                 </div>
-                <div className="text-[10px] text-white/50 tracking-wide uppercase">
-                  Potencia
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-black text-3xl text-white">
-                    9.8
-                  </span>
-                  <span className="text-xs text-yellow-400 tracking-wider font-bold">
-                    T
-                  </span>
-                </div>
-                <div className="text-[10px] text-white/50 tracking-wide uppercase">
-                  Peso
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-black text-3xl text-white">
-                    450
-                  </span>
-                  <span className="text-xs text-yellow-400 tracking-wider font-bold">
-                    L
-                  </span>
-                </div>
-                <div className="text-[10px] text-white/50 tracking-wide uppercase">
-                  Tanque
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-black text-3xl text-white">
-                    4×4
-                  </span>
-                </div>
-                <div className="text-[10px] text-white/50 tracking-wide uppercase">
-                  Articulado
-                </div>
-              </div>
+              ))}
             </div>
 
-            <div className="h-px bg-yellow-400/50 mb-5" />
+            <p className="text-[11px] text-white/50 mb-5">
+              {HERO_TRACTOR.detail}
+            </p>
+
+            <div className="h-px bg-red-600/60 mb-5" />
 
             <button
               onClick={() => scrollToSection("contacto")}
-              className="w-full bg-yellow-400 text-zinc-950 py-4 text-xs font-semibold cursor-pointer uppercase transition-all hover:bg-yellow-300 flex items-center justify-center gap-2 group"
+              className="w-full bg-red-600 text-white py-4 text-xs font-semibold cursor-pointer uppercase transition-all hover:bg-red-500 flex items-center justify-center gap-2 group"
             >
               SOLICITAR COTIZACIÓN
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -238,7 +240,7 @@ export function Hero() {
               EST. 1973 · + DE 50 AÑOS DE TRAYECTORIA
             </div>
             <div className="text-white/50">
-              Distribuidor Pauny · Gravo
+              Distribuidor oficial Hanomag · Michigan
             </div>
           </div>
         </div>

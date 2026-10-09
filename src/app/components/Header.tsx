@@ -45,6 +45,27 @@ export function Header() {
       window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Menú abierto: la página de fondo no se mueve, Escape lo cierra y, si la ventana pasa al
+  // ancho de escritorio (donde no hay hamburguesa), se cierra solo.
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const handleDesktop = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleEscape);
+    desktop.addEventListener("change", handleDesktop);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      desktop.removeEventListener("change", handleDesktop);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const scrollToSection = (id: string) => {
     setIsOpen(false);
     setTimeout(() => {
@@ -56,103 +77,130 @@ export function Header() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled
-          ? "bg-zinc-950/90 backdrop-blur-xl border-b border-white/5"
-          : "bg-zinc-950/80 backdrop-blur-md"
-      }`}
-    >
-      {/* Main Navigation */}
-      <div className="w-full max-w-[1800px] mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection("inicio")}
-            className="flex items-center gap-3 transition-opacity hover:opacity-80 relative z-10 px-4 py-2 -ml-4 cursor-pointer"
-          >
-            <img
-              src={logoHR}
-              alt="Humberto Ranzuglia"
-              className="h-16 w-auto"
-            />
-            <div className="text-left hidden sm:block">
-              <div className="tracking-wider text-white text-[20px] font-[Anton]">
-                HUMBERTO RANZUGLIA S.R.L.
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+          isOpen
+            ? "bg-zinc-950 border-b border-white/10"
+            : isScrolled
+              ? "bg-zinc-950/90 backdrop-blur-xl border-b border-white/5"
+              : "bg-zinc-950/80 backdrop-blur-md"
+        }`}
+      >
+        {/* Main Navigation */}
+        <div className="w-full max-w-[1800px] mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <button
+              onClick={() => scrollToSection("inicio")}
+              className="flex items-center gap-3 transition-opacity hover:opacity-80 relative z-10 px-4 py-2 -ml-4 cursor-pointer"
+            >
+              <img
+                src={logoHR}
+                alt="Humberto Ranzuglia"
+                className="h-16 w-auto"
+              />
+              <div className="text-left hidden sm:block">
+                <div className="tracking-wider text-white text-[20px] font-[Anton]">
+                  HUMBERTO RANZUGLIA S.R.L.
+                </div>
               </div>
-            </div>
-          </button>
+            </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-semibold tracking-wider uppercase transition-colors relative cursor-pointer ${
-                  activeSection === item.id
-                    ? "text-yellow-400"
-                    : "text-white/70 hover:text-yellow-400"
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow-400"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  />
-                )}
-              </button>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-white hover:text-yellow-400 transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-white/10 bg-zinc-950"
-          >
-            <div className="w-full max-w-[1800px] mx-auto px-6 py-4 space-y-1">
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left py-3 px-4 text-sm font-semibold tracking-wider uppercase transition-colors border-b border-white/5 cursor-pointer ${
+                  className={`text-sm font-semibold tracking-wider uppercase transition-colors relative cursor-pointer ${
                     activeSection === item.id
-                      ? "text-yellow-400 bg-yellow-400/10"
-                      : "text-white/70 hover:text-yellow-400 hover:bg-white/5"
+                      ? "text-yellow-400"
+                      : "text-white/70 hover:text-yellow-400"
                   }`}
                 >
                   {item.label}
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow-400"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
                 </button>
               ))}
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-white hover:text-yellow-400 transition-colors cursor-pointer"
+              aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isOpen}
+              aria-controls="menu-movil"
+            >
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Navigation: pantalla completa (la barra del encabezado queda arriba, encima) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            id="menu-movil"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-0 z-[90] flex flex-col bg-zinc-950 pt-20"
+          >
+            <nav className="flex-1 overflow-y-auto overscroll-contain px-6 py-6 flex flex-col justify-center">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + index * 0.04 }}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`w-full text-left py-5 border-b border-white/10 text-3xl font-normal font-[Anton] tracking-wide uppercase transition-colors cursor-pointer ${
+                    activeSection === item.id
+                      ? "text-yellow-400"
+                      : "text-white hover:text-yellow-400"
+                  }`}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </nav>
+
+            <div className="px-6 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] space-y-3 border-t border-white/10 text-sm text-white/80">
+              <a
+                href="https://wa.me/5492923431570"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-yellow-400 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-yellow-400" aria-hidden="true" />
+                Ventas · 2923 43 1570
+              </a>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-4 h-4 text-yellow-400" aria-hidden="true" />
+                Ruta 51 km 616 · Coronel Pringles
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

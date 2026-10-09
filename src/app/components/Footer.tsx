@@ -1,4 +1,5 @@
 import { Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import logoHR from "../../imports/humberto-ranzuglia-small.svg";
 
 export function Footer() {
@@ -33,7 +34,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-white/50 leading-relaxed mb-4">
-              Distribuidor Pauny y Gravo. Sembradoras, acoplados e implementos.
+              Distribuidor oficial Hanomag y Michigan. Sembradoras, acoplados e implementos.
             </p>
             <div className="flex gap-3">
               <a
@@ -52,7 +53,7 @@ export function Footer() {
                 className="w-9 h-9 border-2 border-white/20 rounded flex items-center justify-center hover:bg-yellow-400 hover:border-yellow-400 hover:text-zinc-950 transition-all"
                 aria-label="WhatsApp"
               >
-                <Phone className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -64,8 +65,8 @@ export function Footer() {
             </div>
             <div className="space-y-2">
               {[
-                "Tractores Pauny",
-                "Tractores Gravo",
+                "Tractores Hanomag",
+                "Maquinaria Michigan",
                 "Sembradoras",
                 "Acoplados",
                 "Implementos",
@@ -152,7 +153,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
             <div>© {year} Humberto Ranzuglia S.R.L.</div>
             <div>
-             Distribuidor Pauny · Gravo · Coronel Pringles
+             Distribuidor oficial Hanomag · Michigan · Coronel Pringles
             </div>
             <div>
               Diseño y desarrollo·{" "}

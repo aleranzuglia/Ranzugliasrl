@@ -8,7 +8,6 @@ import logoGalicia from "../../imports/bancos/Logo_Banco_Galicia.svg?url";
 import logoMacro from "../../imports/bancos/Logo_Banco_Macro.svg?url";
 import logoBice from "../../imports/bancos/Bice-logo.svg?url";
 import logoCredicoop from "../../imports/bancos/banco_credicoop.svg?url";
-import logoPauny from "../../imports/pauny/pauny_logo_negativo.svg?url";
 import logoTecnocar from "../../imports/marcas/tecnocar.png";
 import logoSyl from "../../imports/marcas/syl.webp";
 
@@ -58,13 +57,6 @@ const paymentConditions = [
 ];
 
 const factoryOptions = [
-  {
-    logo: logoPauny,
-    name: "Pauny",
-    logoClass: "",
-    href: "https://www.pauny.com.ar/ar/plan_rino/",
-    desc: "Plan Rino — financiamiento oficial de fábrica para tractores nuevos. Condiciones preferenciales directas del fabricante.",
-  },
   {
     logo: logoTecnocar,
     name: "Tecnocar",

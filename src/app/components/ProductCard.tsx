@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { MessageCircle, Plus, Check, ImageOff } from "lucide-react";
+import { Plus, Check, ImageOff } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { Product } from "../data/catalog";
 import { Tooltip } from "./Tooltip";
 
@@ -110,10 +111,10 @@ export function ProductCard({
             <div className="flex items-center gap-3">
               <button
                 onClick={handleWhatsApp}
-                className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 font-semibold text-sm hover:bg-[#20ba57] transition-colors cursor-pointer"
+                aria-label="Consultar por WhatsApp"
+                className="flex items-center justify-center self-stretch bg-[#25D366] text-white px-4 hover:bg-[#20ba57] transition-colors cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
+                <WhatsAppIcon className="w-4 h-4" />
               </button>
               <button
                 onClick={(e) => {
@@ -222,7 +223,7 @@ export function ProductCard({
                 className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:bg-[#20ba57] hover:scale-110 transition-all cursor-pointer"
                 aria-label="Consultar por WhatsApp"
               >
-                <MessageCircle className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
               </button>
             </Tooltip>
             <Tooltip text={isInCompare ? "Quitar de comparación" : "Agregar a comparación"}>

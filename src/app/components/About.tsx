@@ -1,11 +1,12 @@
 import { motion } from 'motion/react';
-import paunyLogo from '../../imports/pauny/pauny.png';
+import hanomagLogo from '../../imports/hanomag/hanomag.png';
+import michiganLogo from '../../imports/michigan/michigan.png';
 
 const stats = [
   { number: '50+', label: 'Años en el mercado' },
   { number: '10+', label: 'Marcas distribuidas' },
-  { number: 'Pauny', label: 'Distribuidor autorizado' },
-  { number: 'Gravo', label: 'Distribuidor autorizado' },
+  { number: 'Hanomag', label: 'Distribuidor oficial' },
+  { number: 'Michigan', label: 'Distribuidor oficial' },
 ];
 
 export function About() {
@@ -30,22 +31,27 @@ export function About() {
               Potencia y solidez en el campo
             </h2>
             <p className="text-lg text-zinc-700 leading-relaxed mb-4">
-             Somos distribuidores de Pauny y Gravo, y trabajamos junto a las marcas líderes del agro argentino.
+             Somos distribuidores oficiales de Hanomag y Michigan, y trabajamos junto a las marcas líderes del agro argentino.
             </p>
             <p className="text-base text-zinc-600 leading-relaxed mb-8">
              Nuestro equipo conoce el campo de verdad, porque forma parte de él. Por eso ofrecemos asesoramiento claro, atención postventa y repuestos disponibles para que nunca te detengas.
             </p>
 
-            <div className="flex items-center gap-4 pt-6 border-t border-zinc-200">
-              <div className="h-10 flex items-center">
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 pt-6 border-t border-zinc-200">
+              <div className="h-10 flex items-center gap-3">
                 <img
-                  src={paunyLogo}
-                  alt="Pauny"
+                  src={hanomagLogo}
+                  alt="Hanomag"
+                  className="h-8 object-contain"
+                />
+                <img
+                  src={michiganLogo}
+                  alt="Michigan"
                   className="h-8 object-contain"
                 />
               </div>
               <span className="text-xs font-bold tracking-wide uppercase text-zinc-500">
-                Distribuidor Pauny · Gravo
+                Distribuidor oficial Hanomag · Michigan
               </span>
             </div>
           </motion.div>
@@ -56,11 +62,11 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             {stats.map((stat, index) => (
               <motion.div
-                key={stat.label}
+                key={stat.number}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-50px' }}
