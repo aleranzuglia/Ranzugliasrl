@@ -125,16 +125,16 @@ export function Footer() {
                 href="https://wa.me/5492923431570"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-text-muted-on-dark hover:text-accent transition-colors"
+                className="flex items-center gap-2 break-all text-sm text-text-muted-on-dark hover:text-accent transition-colors"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 shrink-0" />
                 2923 43 1570
               </a>
               <a
                 href="mailto:ranzugliasrl@gmail.com"
-                className="flex items-center gap-2 text-sm text-text-muted-on-dark hover:text-accent transition-colors"
+                className="flex items-center gap-2 break-all text-sm text-text-muted-on-dark hover:text-accent transition-colors"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 shrink-0" />
                 humbertoranzugliasrl@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm text-text-muted-on-dark">

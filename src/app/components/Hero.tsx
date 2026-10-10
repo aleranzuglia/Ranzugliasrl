@@ -112,7 +112,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-[45ch]">
+            <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-[45ch] xl:max-w-[36ch] 2xl:max-w-[45ch]">
               Tractores Hanomag, maquinaria Michigan, sembradoras, acoplados e implementos.
               <span className="block mt-2 text-accent font-semibold">
                 + de 50 años de trayectoria en el agro argentino.
@@ -156,7 +156,7 @@ export function Hero() {
               className="absolute -right-16 xl:-right-8 2xl:right-0 top-[52%] -translate-y-1/2 w-[62%] 2xl:w-[58%] max-w-[1250px] h-[88vh] hidden md:flex items-center justify-center pointer-events-none z-10"
               style={{
                 filter:
-                  "drop-shadow(0 40px 120px rgba(220, 38, 38, 0.45)) drop-shadow(0 0 60px rgba(239, 68, 68, 0.3))",
+                  "drop-shadow(0 40px 120px rgba(250, 204, 21, 0.22)) drop-shadow(0 0 60px rgba(250, 204, 21, 0.14))",
               }}
             >
               <img
@@ -176,7 +176,7 @@ export function Hero() {
               delay: 0.8,
               ease: "easeOut",
             }}
-            className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-white/15 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
+            className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-white/15 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden xl:block z-40"
           >
             <div className="flex items-center justify-between mb-5">
               <span className="text-xs font-bold tracking-[0.28em] text-accent">
