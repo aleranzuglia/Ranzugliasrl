@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./shared/Button";
+import { BankCard, type BankOption } from "./shared/BankCard";
 import { Calculator } from "lucide-react";
 import logoNacion from "../../imports/bancos/Banco_Naci_n.svg?url";
 import logoProvincia from "../../imports/bancos/Banco_Provincia__Bs.As.__2021_.svg?url";
@@ -12,39 +13,48 @@ import logoCredicoop from "../../imports/bancos/banco_credicoop.svg?url";
 import logoTecnocar from "../../imports/marcas/tecnocar.png";
 import logoSyl from "../../imports/marcas/syl.webp";
 
-const bankOptions = [
+// Textos generales, sin tasas ni fechas. Una promo con vigencia se carga en `promo`
+// ({ text, validUntil: "AAAA-MM-DD" }) y se oculta sola cuando vence.
+const bankOptions: BankOption[] = [
   {
-    desc: "Crédito Prendario Nación para agro: tasa desde 12% en pesos (hasta 60 cuotas) o 6,5% en dólares (hasta 48 cuotas). Con tarjetas MiPyme/Agro Nación (BNA Conecta), tasa del 27% válida durante junio.",
+    name: "Banco Nación",
+    desc: "Crédito prendario para maquinaria agrícola, en pesos o dólares. Consultá las condiciones vigentes.",
     logo: logoNacion,
     href: "https://www.bna.com.ar/Empresas/AgroNegocios/Creditos",
   },
   {
+    name: "Banco Provincia",
     desc: "Línea de crédito para maquinaria agrícola. Financiamiento a medida del productor bonaerense.",
     logo: logoProvincia,
     href: "https://www.bancoprovincia.com.ar/agro/agro_capitaltrabajo",
   },
   {
+    name: "Banco Macro",
     desc: "Créditos prendarios y líneas agro. Cuotas fijas en pesos o dólares.",
     logo: logoMacro,
     href: "https://www.macro.com.ar/agro/financiaciones/credito-al-instante",
   },
   {
+    name: "Banco Galicia",
     desc: "Línea de crédito para maquinaria y equipamiento agrícola.",
     logo: logoGalicia,
     href: "https://www.galicia.ar/empresas/financiaciones/compra-insumos-agro",
   },
   {
+    name: "Banco de La Pampa",
     desc: "Financiamiento regional para productores del sudoeste bonaerense. Cercanía y conocimiento del campo.",
     logo: logoPampa,
     href: "https://www.bancodelapampa.com.ar/agro",
   },
   {
+    name: "BICE",
     desc: "Banco de Inversión y Comercio Exterior. Líneas especiales para inversión en maquinaria.",
     logo: logoBice,
     href: "https://www.bice.com.ar/productos/inversion/creditosagro2026/",
   },
   {
-    desc: "Financiamiento para implementos DEMS. Hasta el 80% del valor del bien — 36 cuotas (TNA 20%) o 60 cuotas (TNA 22,80%). Promoción válida hasta el 15/08.",
+    name: "Banco Credicoop",
+    desc: "Financiamiento para implementos DEMS. Consultá plazos y condiciones vigentes.",
     logo: logoCredicoop,
     href: "https://www.bancocredicoop.coop/",
   },
@@ -147,34 +157,8 @@ export function Financing() {
             >
               {/* Bank Cards Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mb-16">
-                {bankOptions.map((option, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ delay: index * 0.07 }}
-                    className="bg-white/5 border border-white/10 rounded-lg p-7 transition-all hover:bg-white/10 hover:border-accent/40"
-                  >
-                    <div className="mb-4 h-8 flex items-center">
-                      <img
-                        src={option.logo}
-                        alt=""
-                        className="h-full w-auto object-contain"
-                      />
-                    </div>
-                    <p className="text-text-muted-on-dark leading-relaxed mb-4 text-base">
-                      {option.desc}
-                    </p>
-                    <a
-                      href={option.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
-                    >
-                      Más información →
-                    </a>
-                  </motion.div>
+                {bankOptions.map((bank, index) => (
+                  <BankCard key={bank.name} bank={bank} index={index} />
                 ))}
 
                 {/* CTA Card */}

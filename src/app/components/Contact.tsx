@@ -168,7 +168,7 @@ export function Contact() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="h-0.5 w-8 bg-ink/40" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-ink/50">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-ink/80">
                 Hablemos
               </span>
             </div>
@@ -192,7 +192,7 @@ export function Contact() {
                   transition={{ delay: index * 0.1 }}
                   className="bg-ink/10 rounded-lg p-4 space-y-2"
                 >
-                  <div className="text-xs font-black tracking-wider uppercase text-ink/50">
+                  <div className="text-xs font-black tracking-wider uppercase text-ink/80">
                     {local.label}
                   </div>
                   <a
@@ -204,7 +204,7 @@ export function Contact() {
                     <Phone className="w-4 h-4 shrink-0" />
                     {local.phone}
                   </a>
-                  <div className="flex items-start gap-1.5 text-sm text-ink/70">
+                  <div className="flex items-start gap-1.5 text-sm text-ink/80">
                     <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
                     {local.address}
                   </div>
@@ -223,7 +223,7 @@ export function Contact() {
                   transition={{ delay: index * 0.1 }}
                   className="grid grid-cols-[100px,1fr] items-baseline gap-4 py-3 border-b border-ink/10"
                 >
-                  <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-ink/50">
+                  <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-ink/80">
                     {info.icon}
                     {info.label}
                   </div>

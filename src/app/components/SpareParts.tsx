@@ -16,7 +16,6 @@ const categories = [
       "Sistemas hidráulicos",
       "Engrases",
     ],
-    featured: false,
     paymentDays: null,
   },
   {
@@ -27,7 +26,6 @@ const categories = [
     description:
       "Stock de repuestos originales para todas las marcas que comercializamos. Cada pieza está certificada de fábrica para garantizar el rendimiento y la vida útil de tu maquinaria.",
     highlights: ["Hanomag", "Michigan", "Pauny", "Gravo", "Gherardi", "Pampero", "SYL", "Belén"],
-    featured: false,
     paymentDays: null,
   },
   {
@@ -38,7 +36,6 @@ const categories = [
     description:
       "Discos y cuchillas Ingersoll, referencia en durabilidad para labores de siembra y labranza. Fabricadas con acero de alta resistencia para el agro argentino.",
     highlights: [],
-    featured: true,
     paymentDays: ["0", "30", "60", "90"],
   },
 ];
@@ -79,41 +76,20 @@ export function SpareParts() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.12 }}
-                className={`
-                  relative rounded-xl p-8 flex flex-col gap-5 transition-all
-                  ${
-                    cat.featured
-                      ? "bg-accent/10 border border-accent/40 hover:border-accent/70"
-                      : "bg-white/5 border border-white/10 hover:bg-white/8 hover:border-white/20"
-                  }
-                `}
+                className="relative rounded-xl p-8 flex flex-col gap-5 transition-all bg-white/5 border border-white/10 hover:bg-white/8 hover:border-white/20"
               >
                 {/* Tag + Icon */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <span
-                      className={`text-xs font-bold tracking-[0.18em] uppercase ${
-                        cat.featured ? "text-accent" : "text-text-muted-on-dark"
-                      }`}
-                    >
+                    <span className="text-xs font-bold tracking-[0.18em] uppercase text-text-muted-on-dark">
                       {cat.tag}
                     </span>
                     <h3 className="text-xl font-bold text-white mt-1">
                       {cat.brand}
                     </h3>
                   </div>
-                  <div
-                    className={`p-3 rounded-lg ${
-                      cat.featured
-                        ? "bg-accent/20"
-                        : "bg-white/8"
-                    }`}
-                  >
-                    <Icon
-                      className={`w-5 h-5 ${
-                        cat.featured ? "text-accent" : "text-text-muted-on-dark"
-                      }`}
-                    />
+                  <div className="p-3 rounded-lg bg-white/8">
+                    <Icon className="w-5 h-5 text-text-muted-on-dark" />
                   </div>
                 </div>
 
@@ -143,20 +119,20 @@ export function SpareParts() {
 
                 {/* Payment terms — Ingersoll only */}
                 {cat.paymentDays && (
-                  <div className="mt-auto pt-4 border-t border-accent/20">
-                    <p className="text-xs font-bold tracking-[0.15em] uppercase text-accent/70 mb-3">
+                  <div className="mt-auto pt-4 border-t border-white/10">
+                    <p className="text-xs font-bold tracking-[0.15em] uppercase text-text-muted-on-dark mb-3">
                       Financiación propia
                     </p>
                     <div className="flex gap-2">
                       {cat.paymentDays.map((d) => (
                         <div
                           key={d}
-                          className="flex-1 text-center py-2.5 rounded-lg bg-accent/15 border border-accent/30"
+                          className="flex-1 text-center py-2.5 rounded-lg bg-white/5 border border-white/10"
                         >
                           <span className="block text-lg font-black text-accent leading-none">
                             {d}
                           </span>
-                          <span className="text-xs text-accent/60 font-semibold uppercase tracking-wide">
+                          <span className="text-xs text-text-muted-on-dark font-semibold uppercase tracking-wide">
                             días
                           </span>
                         </div>

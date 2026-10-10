@@ -156,7 +156,7 @@ export function Footer() {
              Distribuidor oficial Hanomag · Michigan · Coronel Pringles
             </div>
             <div>
-              Diseño y desarrollo·{" "}
+              Diseño y desarrollo:{" "}
               <a
                 href="https://alejandraranzuglia.com.ar"
                 target="_blank"

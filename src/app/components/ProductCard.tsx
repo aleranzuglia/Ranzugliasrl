@@ -80,7 +80,7 @@ export function ProductCard({
                 <h3 className="font-bold text-2xl text-ink mb-2">
                   {product.nombre}
                 </h3>
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag, i) => (
                     <span
                       key={i}
@@ -90,9 +90,6 @@ export function ProductCard({
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-zinc-600 line-clamp-2">
-                  {product.descripcion}
-                </p>
               </div>
 
               {/* Badge */}
@@ -197,7 +194,7 @@ export function ProductCard({
         <h3 className="font-bold text-xl text-ink mb-2">
           {product.nombre}
         </h3>
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {product.tags.slice(0, 3).map((tag, i) => (
             <span
               key={i}
@@ -207,9 +204,6 @@ export function ProductCard({
             </span>
           ))}
         </div>
-        <p className="text-sm text-zinc-600 line-clamp-2 mb-4">
-          {product.descripcion}
-        </p>
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 mt-auto">
@@ -232,7 +226,7 @@ export function ProductCard({
                   e.stopPropagation();
                   onToggleCompare();
                 }}
-                className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all cursor-pointer ${
+                className={`h-9 min-w-9 px-2.5 md:px-0 md:w-9 rounded-full flex items-center justify-center gap-1.5 border-2 transition-all cursor-pointer ${
                   isInCompare
                     ? "bg-accent border-accent text-ink"
                     : "border-ink text-ink hover:bg-ink hover:text-white"
@@ -244,6 +238,10 @@ export function ProductCard({
                 ) : (
                   <Plus className="w-4 h-4" />
                 )}
+                {/* En pantallas tactiles no hay hover: el texto reemplaza al tooltip */}
+                <span className="text-xs font-semibold md:sr-only">
+                  {isInCompare ? "Agregado" : "Comparar"}
+                </span>
               </button>
             </Tooltip>
           </div>

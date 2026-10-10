@@ -1,12 +1,11 @@
 import { motion } from 'motion/react';
+import { Image as ImageIcon } from 'lucide-react';
 import hanomagLogo from '../../imports/hanomag/hanomag.png';
 import michiganLogo from '../../imports/michigan/michigan.png';
 
 const stats = [
   { number: '50+', label: 'Años en el mercado' },
   { number: '10+', label: 'Marcas distribuidas' },
-  { number: 'Hanomag', label: 'Distribuidor oficial' },
-  { number: 'Michigan', label: 'Distribuidor oficial' },
 ];
 
 export function About() {
@@ -20,7 +19,7 @@ export function About() {
           </span>
         </div>
 
-        <div className="grid lg:grid-cols-[1.4fr,1fr] gap-16 items-start">
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-start">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -56,32 +55,47 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.number}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className="bg-white border border-zinc-200 border-l-4 border-l-yellow-400 p-6 hover:-translate-y-1 transition-transform"
-              >
-                <div className="font-black text-2xl text-ink mb-2 leading-none">
-                  {stat.number}
-                </div>
-                <div className="text-xs font-bold tracking-wider uppercase text-zinc-400">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          {/* Datos + foto */}
+          <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ delay: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.number}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  className="bg-white border border-zinc-200 border-l-4 border-l-accent p-6 hover:-translate-y-1 transition-transform"
+                >
+                  <div className="font-black text-2xl text-ink mb-2 leading-none">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs font-bold tracking-wider uppercase text-zinc-500">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* TODO: reemplazar el placeholder por una foto real del local o del equipo
+                (agregar el archivo en src/imports y mostrarlo con <img> + alt descriptivo). */}
+            <div
+              role="img"
+              aria-label="Espacio reservado para una foto del local o del equipo"
+              className="aspect-[4/3] w-full border-2 border-dashed border-zinc-300 bg-zinc-100 flex flex-col items-center justify-center gap-2 text-zinc-500"
+            >
+              <ImageIcon className="w-10 h-10" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-wider uppercase">
+                Foto del local o del equipo
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
