@@ -103,7 +103,7 @@ function ProductDetail({
       </button>
 
       <div className="overflow-y-auto overscroll-contain">
-        <div className="grid md:grid-cols-[1.2fr,1fr]">
+        <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           {/* Image */}
           <div
             className={`${hasGallery || product.fotoCompleta ? "bg-white" : getBrandColor(product.marca)} flex flex-col min-h-[250px]`}
@@ -173,7 +173,7 @@ function ProductDetail({
           </div>
 
           {/* Content */}
-          <div className="p-8 flex flex-col max-h-full overflow-y-auto">
+          <div className="p-8 md:pt-16 flex flex-col max-h-full overflow-y-auto">
             <p className="text-sm text-zinc-600 leading-relaxed mb-6">
               {product.descripcion}
             </p>
@@ -253,11 +253,11 @@ function ProductDetail({
             )}
 
             {/* Actions */}
-            <div className="mt-auto space-y-3 md:space-y-0 md:space-x-3 flex flex-col md:flex-row">
-              <Button onClick={scrollToContact} className="w-full">
+            <div className="mt-auto space-y-3 lg:space-y-0 lg:space-x-3 flex flex-col lg:flex-row">
+              <Button onClick={scrollToContact} className="w-full px-4">
                 Pedir presupuesto
               </Button>
-              <Button variant="whatsapp" onClick={handleWhatsApp} className="w-full">
+              <Button variant="whatsapp" onClick={handleWhatsApp} className="w-full px-4">
                 <WhatsAppIcon className="w-4 h-4" />
                 Consultar
               </Button>

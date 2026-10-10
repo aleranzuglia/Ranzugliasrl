@@ -10,11 +10,11 @@ const stats = [
 
 export function About() {
   return (
-    <section id="nosotros" className="bg-zinc-50 py-20">
+    <section id="nosotros" className="bg-ink py-20">
       <div className="w-full lg:max-w-[1024px]   xl:max-w-[1280px]  2xl:max-w-[1536px] mx-auto px-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="h-0.5 w-8 bg-zinc-500" />
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500">
+          <div className="h-0.5 w-8 bg-accent" />
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
             Quiénes somos
           </span>
         </div>
@@ -26,17 +26,17 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
           >
-            <h2 className="font-normal text-2xl md:text-4xl text-ink mb-6 leading-none">
+            <h2 className="font-normal text-2xl md:text-4xl text-white mb-6 leading-none">
               Potencia y solidez en el campo
             </h2>
-            <p className="text-lg text-zinc-700 leading-relaxed mb-4">
+            <p className="text-lg text-white/80 leading-relaxed mb-4">
              Somos distribuidores oficiales de Hanomag y Michigan, y trabajamos junto a las marcas líderes del agro argentino.
             </p>
-            <p className="text-base text-zinc-600 leading-relaxed mb-8">
+            <p className="text-base text-text-muted-on-dark leading-relaxed mb-8">
              Nuestro equipo conoce el campo de verdad, porque forma parte de él. Por eso ofrecemos asesoramiento claro, atención postventa y repuestos disponibles para que nunca te detengas.
             </p>
 
-            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 pt-6 border-t border-zinc-200">
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 pt-6 border-t border-white/10">
               <div className="h-10 flex items-center gap-3">
                 <img
                   src={hanomagLogo}
@@ -49,7 +49,7 @@ export function About() {
                   className="h-8 object-contain"
                 />
               </div>
-              <span className="text-xs font-bold tracking-wide uppercase text-zinc-500">
+              <span className="text-xs font-bold tracking-wide uppercase text-text-muted-on-dark">
                 Distribuidor oficial Hanomag · Michigan
               </span>
             </div>
@@ -71,12 +71,12 @@ export function About() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ delay: 0.3 + index * 0.1 }}
-                  className="bg-white border border-zinc-200 border-l-4 border-l-accent p-6 hover:-translate-y-1 transition-transform"
+                  className="bg-surface-2 border border-white/10 border-l-4 border-l-accent p-6 hover:-translate-y-1 transition-transform"
                 >
-                  <div className="font-black text-2xl text-ink mb-2 leading-none">
+                  <div className="font-black text-2xl text-white mb-2 leading-none">
                     {stat.number}
                   </div>
-                  <div className="text-xs font-bold tracking-wider uppercase text-zinc-500">
+                  <div className="text-xs font-bold tracking-wider uppercase text-text-muted-on-dark">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -88,7 +88,7 @@ export function About() {
             <div
               role="img"
               aria-label="Espacio reservado para una foto del local o del equipo"
-              className="aspect-[4/3] w-full border-2 border-dashed border-zinc-300 bg-zinc-100 flex flex-col items-center justify-center gap-2 text-zinc-500"
+              className="aspect-[4/3] w-full border-2 border-dashed border-white/20 bg-surface-2 flex flex-col items-center justify-center gap-2 text-text-muted-on-dark"
             >
               <ImageIcon className="w-10 h-10" aria-hidden="true" />
               <span className="text-xs font-bold tracking-wider uppercase">

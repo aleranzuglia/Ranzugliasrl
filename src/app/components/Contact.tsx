@@ -221,7 +221,7 @@ export function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: index * 0.1 }}
-                  className="grid grid-cols-[100px,1fr] items-baseline gap-4 py-3 border-b border-ink/10"
+                  className="grid grid-cols-1 sm:grid-cols-[7.5rem_minmax(0,1fr)] items-baseline gap-1 sm:gap-4 py-3 border-b border-ink/10"
                 >
                   <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-ink/80">
                     {info.icon}
@@ -232,12 +232,12 @@ export function Contact() {
                       href={info.link}
                       target={info.link.startsWith("http") ? "_blank" : undefined}
                       rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="font-semibold text-base text-ink hover:underline"
+                      className="font-semibold text-base text-ink hover:underline [overflow-wrap:anywhere]"
                     >
                       {info.value}
                     </a>
                   ) : (
-                    <span className="font-semibold text-base text-ink">
+                    <span className="font-semibold text-base text-ink [overflow-wrap:anywhere]">
                       {info.value}
                     </span>
                   )}
