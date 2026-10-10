@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEntrance } from "../../lib/motion";
 
 // Promocion con vigencia: se muestra solo hasta el final del dia `validUntil` (AAAA-MM-DD, hora local).
 // Cuando vence deja de mostrarse sola y la tarjeta queda con su texto general.
@@ -24,17 +25,16 @@ export function isPromoActive(promo: BankPromo | undefined, now = new Date()) {
 }
 
 export function BankCard({ bank, index }: { bank: BankOption; index: number }) {
+  const { reveal } = useEntrance();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.07 }}
+      {...reveal(index)}
       className="flex h-full flex-col rounded-lg border border-white/10 bg-white/5 p-7 transition-all hover:border-accent/40 hover:bg-white/10"
     >
       {/* Logo en blanco, misma altura optica en todas las tarjetas */}
       <div className="mb-4 flex h-8 items-center">
-        <img
+        <img loading="lazy" decoding="async"
           src={bank.logo}
           alt={bank.name}
           className="h-6 w-auto max-w-[12rem] object-contain object-left brightness-0 invert"

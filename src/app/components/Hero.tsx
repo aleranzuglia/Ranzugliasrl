@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./shared/Button";
+import { ENTRANCE, scrollBehavior, useEntrance } from "../lib/motion";
 import bgHero from "../../imports/bg-hero.avif";
 
 // Tractor del hero: PNG recortado (fondo transparente) en src/imports/hanomag/hero-tractor.png (o .webp).
@@ -36,12 +37,13 @@ const HERO_TRACTOR: HeroTractor = {
 };
 
 export function Hero() {
+  const { enter, reduced } = useEntrance();
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       window.scrollTo({
         top: el.offsetTop - 90,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       });
     }
   };
@@ -86,9 +88,7 @@ export function Hero() {
         <div className="relative min-h-0 md:min-h-[calc(100vh-180px)] flex items-center">
           {/* Content - Left Side */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            {...enter(0, { x: -30 })}
             className="relative z-20 max-w-full md:max-w-[32rem] pr-8 xl:max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -137,21 +137,13 @@ export function Hero() {
           {/* Tractor Image - Right Side - MASSIVE with Floating Animation */}
           {tractorImage && (
             <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                y: [0, -20, 0],
-              }}
+              {...enter(1, { x: 40 })}
+              // El flotado continuo se omite con prefers-reduced-motion
+              animate={reduced ? undefined : { opacity: 1, x: 0, y: [0, -20, 0] }}
               transition={{
-                opacity: { duration: 1, delay: 0.2 },
-                x: { duration: 1, delay: 0.2 },
-                y: {
-                  duration: 5,
-                  delay: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
+                opacity: { duration: ENTRANCE.duration, delay: 0.05 },
+                x: { duration: ENTRANCE.duration, delay: 0.05, ease: "easeOut" },
+                y: { duration: 5, delay: 1.5, repeat: Infinity, ease: "easeInOut" },
               }}
               className="absolute -right-16 xl:-right-8 2xl:right-0 top-[52%] -translate-y-1/2 w-[62%] 2xl:w-[58%] max-w-[1250px] h-[88vh] hidden md:flex items-center justify-center pointer-events-none z-10"
               style={{
@@ -160,6 +152,9 @@ export function Hero() {
               }}
             >
               <img
+                // React 18 no conoce fetchPriority: se pasa como atributo HTML en minúsculas
+                {...{ fetchpriority: "high" }}
+                decoding="async"
                 src={tractorImage}
                 alt={HERO_TRACTOR.name}
                 className="w-full h-full object-contain"
@@ -169,13 +164,7 @@ export function Hero() {
 
           {/* Floating Technical Panel - Overlaying the tractor */}
           <motion.aside
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.8,
-              ease: "easeOut",
-            }}
+            {...enter(2, { scale: 0.9 })}
             className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-white/15 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden xl:block z-40"
           >
             <div className="flex items-center justify-between mb-5">
@@ -218,9 +207,7 @@ export function Hero() {
 
       {/* Bottom Bar */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
+        {...enter(3)}
         className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-ink/60 backdrop-blur-md z-20"
       >
         <div className="max-w-[1800px] mx-auto px-6 py-4">

@@ -12,6 +12,8 @@ import logoBice from "../../imports/bancos/Bice-logo.svg?url";
 import logoCredicoop from "../../imports/bancos/banco_credicoop.svg?url";
 import logoTecnocar from "../../imports/marcas/tecnocar.png";
 import logoSyl from "../../imports/marcas/syl.webp";
+import { useEntrance } from "../lib/motion";
+import { SectionHeader } from "./shared/SectionHeader";
 
 // Textos generales, sin tasas ni fechas. Una promo con vigencia se carga en `promo`
 // ({ text, validUntil: "AAAA-MM-DD" }) y se oculta sola cuando vence.
@@ -85,6 +87,7 @@ const factoryOptions = [
 ];
 
 export function Financing() {
+  const { reveal, enter } = useEntrance();
   const [tab, setTab] = useState<"banks" | "factory">("banks");
   const [amount, setAmount] = useState(50000000);
   const [months, setMonths] = useState(36);
@@ -103,22 +106,13 @@ export function Financing() {
     >
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-0.5 w-8 bg-accent" />
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
-              Financiamiento
-            </span>
-            <div className="h-0.5 w-8 bg-accent" />
-          </div>
-          <h2 className="font-normal text-2xl md:text-4xl text-white mb-4">
-            OPCIONES DE PAGO Y CRÉDITO
-          </h2>
-          <p className="text-lg text-text-muted-on-dark mx-auto">
-            Facilitamos el acceso a tu maquinaria con múltiples alternativas de
-            financiamiento.
-          </p>
-        </div>
+        <SectionHeader
+          align="center"
+          className="mb-10"
+          eyebrow="Financiamiento"
+          title="OPCIONES DE PAGO Y CRÉDITO"
+          description="Facilitamos el acceso a tu maquinaria con múltiples alternativas de financiamiento."
+        />
 
         {/* Tabs */}
         <div className="flex justify-center mb-10">
@@ -163,10 +157,7 @@ export function Financing() {
 
                 {/* CTA Card */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 0.5 }}
+                  {...reveal(5)}
                   className="bg-accent text-ink rounded-lg p-7 flex flex-col justify-center items-start"
                 >
                   <h3 className="font-bold text-xl mb-3">
@@ -306,14 +297,12 @@ export function Financing() {
                 {factoryOptions.map((brand, index) => (
                   <motion.div
                     key={brand.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    {...enter(index)}
                     className="bg-white/5 border border-white/10 rounded-xl overflow-hidden"
                   >
                     {/* Card header */}
                     <div className="bg-white/8 border-b border-white/10 px-7 py-5 flex items-center justify-between">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={brand.logo}
                         alt={brand.name}
                         className={`h-7 w-auto object-contain ${brand.logoClass}`}
@@ -388,9 +377,7 @@ export function Financing() {
 
               {/* CTA */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                {...enter(3)}
                 className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 bg-accent/10 border border-accent/30 rounded-xl px-8 py-6 max-w-3xl mx-auto"
               >
                 <div>

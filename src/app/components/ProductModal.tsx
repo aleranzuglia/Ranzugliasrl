@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { ModalSheet } from "./ModalSheet";
 import { Product } from "../data/catalog";
+import { scrollBehavior } from "../lib/motion";
 
 interface ProductModalProps {
   product: Product | null;
@@ -79,7 +80,7 @@ function ProductDetail({
       if (el) {
         window.scrollTo({
           top: el.offsetTop - 90,
-          behavior: "smooth",
+          behavior: scrollBehavior(),
         });
       }
     }, 300);
@@ -112,22 +113,22 @@ function ProductDetail({
               {activeImage ? (
                 hasGallery ? (
                   <>
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={activeImage}
                       alt=""
                       aria-hidden="true"
                       className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-70"
                     />
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={activeImage}
-                      alt={product.nombre}
+                      alt={`${product.marca} ${product.nombre}`}
                       className="relative w-full h-full object-contain"
                     />
                   </>
                 ) : (
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={activeImage}
-                    alt={product.nombre}
+                    alt={`${product.marca} ${product.nombre}`}
                     className={product.fotoCompleta ? "w-full h-full min-h-[250px] object-cover" : "w-full h-full max-h-80 object-contain"}
                   />
                 )
@@ -151,9 +152,9 @@ function ProductDetail({
                         : "border-transparent hover:border-zinc-300"
                     }`}
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={img}
-                      alt={`${product.nombre} - foto ${i + 1}`}
+                      alt={`${product.marca} ${product.nombre}, foto ${i + 1}`}
                       className="w-full h-full object-cover"
                     />
                   </button>

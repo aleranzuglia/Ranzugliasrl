@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
 import { Droplets, Wrench, Disc3 } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
+import { useEntrance } from "../lib/motion";
+import { SectionHeader } from "./shared/SectionHeader";
 
 const categories = [
   {
@@ -41,29 +43,23 @@ const categories = [
 ];
 
 export function SpareParts() {
+  const { reveal } = useEntrance();
   return (
     <section
       id="repuestos"
+      data-surface="light"
       className="bg-paper py-20"
     >
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-0.5 w-8 bg-zinc-500" />
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500">
-              Repuestos
-            </span>
-            <div className="h-0.5 w-8 bg-zinc-500" />
-          </div>
-          <h2 className="font-normal text-2xl md:text-4xl text-ink mb-4">
-            REPUESTOS Y SUMINISTROS
-          </h2>
-          <p className="text-lg text-zinc-600 max-w-2xl mx-auto">
-            Todo lo que tu maquinaria necesita para seguir trabajando, con
-            repuestos originales y productos de las mejores marcas del agro.
-          </p>
-        </div>
+        <SectionHeader
+          tone="light"
+          align="center"
+          className="mb-14"
+          eyebrow="Repuestos"
+          title="REPUESTOS Y SUMINISTROS"
+          description="Todo lo que tu maquinaria necesita para seguir trabajando, con repuestos originales y productos de las mejores marcas del agro."
+        />
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -72,10 +68,7 @@ export function SpareParts() {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.12 }}
+                {...reveal(index)}
                 className="relative rounded-xl p-8 flex flex-col gap-5 transition-all bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-lg"
               >
                 {/* Tag + Icon */}
@@ -147,10 +140,7 @@ export function SpareParts() {
 
         {/* CTA Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ delay: 0.4 }}
+          {...reveal(4)}
           className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-white border border-zinc-200 rounded-xl px-8 py-6"
         >
           <div>

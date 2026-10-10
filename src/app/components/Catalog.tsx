@@ -20,11 +20,13 @@ import {
 } from "../data/catalog";
 import { FiltroCatalogo, MARCAS_OFICIALES } from "../data/marcas";
 import { BrandMoreInfo } from "./OfficialBrands";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "./shared/ProductCard";
 import { ProductModal } from "./ProductModal";
 import { CompareDrawer } from "./CompareDrawer";
 import { Tooltip } from "./Tooltip";
 import sinResultados from "../../imports/no-se-encuentra.svg?url";
+import { scrollBehavior, useEntrance } from "../lib/motion";
+import { SectionHeader } from "./shared/SectionHeader";
 
 interface CatalogProps {
   compareProducts: Product[];
@@ -38,6 +40,7 @@ export function Catalog({
   setCompareProducts,
   filtroExterno,
 }: CatalogProps) {
+  const { enter } = useEntrance();
   const [activeTab, setActiveTab] = useState<"nuevo" | "usado">("nuevo");
   const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [activeBrand, setActiveBrand] = useState<string>("todas");
@@ -85,7 +88,7 @@ export function Catalog({
     const timer = setTimeout(() => {
       const el = document.getElementById("catalogo");
       if (el) {
-        window.scrollTo({ top: el.offsetTop - 90, behavior: "smooth" });
+        window.scrollTo({ top: el.offsetTop - 90, behavior: scrollBehavior() });
       }
     }, 50);
     return () => clearTimeout(timer);
@@ -155,21 +158,15 @@ export function Catalog({
   };
 
   return (
-    <section id="catalogo" className="bg-[#f7f7f7] py-20">
+    <section id="catalogo" data-surface="light" className="bg-[#f7f7f7] py-20">
       <div className="w-full lg:max-w-[1024px]   xl:max-w-[1280px]  2xl:max-w-[1536px] mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 mb-8">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="h-0.5 w-8 bg-zinc-500" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500">
-                Catálogo completo
-              </span>
-            </div>
-            <h2 className="font-normal text-2xl md:text-4xl text-ink">
-              MAQUINARIAS AGRÍCOLAS
-            </h2>
-          </div>
+          <SectionHeader
+            tone="light"
+            eyebrow="Catálogo completo"
+            title="MAQUINARIAS AGRÍCOLAS"
+          />
 
           {/* Tabs */}
           <div className="flex border-2 border-ink">
@@ -214,7 +211,7 @@ export function Catalog({
               placeholder="Buscar por modelo, marca, potencia..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border border-zinc-300 rounded-lg focus:border-ink focus:outline-none transition-colors text-sm text-ink"
+              className="w-full pl-12 pr-4 py-4 bg-white border border-zinc-300 rounded-lg focus:border-ink transition-colors text-sm text-ink"
             />
             {searchQuery && (
               <button
@@ -260,9 +257,7 @@ export function Catalog({
           {brands.length > 1 && (
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
+              {...enter(0, { y: -6 })}
               className="flex flex-wrap items-center gap-2"
             >
               {["todas", ...brands].map((brand) => {
@@ -349,7 +344,7 @@ export function Catalog({
         {filteredProducts.length === 0 ? (
           <div className="text-center py-20">
             
-            <img
+            <img loading="lazy" decoding="async"
               src={sinResultados}
               alt=""
               className="h-auto w-150 object-contain mx-auto mb-8"

@@ -1,6 +1,7 @@
 import { Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import logoHR from "../../imports/humberto-ranzuglia-small.svg";
+import { scrollBehavior } from "../lib/motion";
 
 export function Footer() {
   const scrollToSection = (id: string) => {
@@ -8,7 +9,7 @@ export function Footer() {
     if (el) {
       window.scrollTo({
         top: el.offsetTop - 90,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       });
     }
   };
@@ -22,7 +23,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img
+              <img loading="lazy" decoding="async"
                 src={logoHR}
                 alt="Humberto Ranzuglia"
                 className="h-12 w-auto"
@@ -135,7 +136,7 @@ export function Footer() {
                 className="flex items-center gap-2 break-all text-sm text-text-muted-on-dark hover:text-accent transition-colors"
               >
                 <Mail className="w-4 h-4 shrink-0" />
-                humbertoranzugliasrl@gmail.com
+                ranzugliasrl@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm text-text-muted-on-dark">
                 <MapPin className="w-4 h-4" />

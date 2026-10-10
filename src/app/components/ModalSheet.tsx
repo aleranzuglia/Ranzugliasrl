@@ -55,6 +55,7 @@ export function ModalSheet({
         }}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
+        data-surface="light"
         aria-modal="true"
         className={`relative flex flex-col w-full ${maxWidthClass} max-h-[92dvh] md:max-h-[80vh] overflow-hidden bg-white rounded-t-2xl md:rounded-xl border-2 border-b-0 md:border-b-2 border-ink shadow-2xl pb-[env(safe-area-inset-bottom)] md:pb-0 ${panelClassName}`}
       >

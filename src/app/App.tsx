@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Toaster } from 'sonner';
+import { MotionConfig } from 'motion/react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Brands } from './components/Brands';
@@ -24,6 +25,7 @@ export default function App() {
     setFiltroCatalogo((anterior) => ({ ...filtro, id: (anterior?.id ?? 0) + 1 }));
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-ink text-white">
       <Header />
       <main>
@@ -49,5 +51,6 @@ export default function App() {
         richColors
       />
     </div>
+    </MotionConfig>
   );
 }

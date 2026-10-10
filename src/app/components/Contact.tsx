@@ -11,8 +11,11 @@ import {
   Clock,
 } from "lucide-react";
 import { CATALOG, CATEGORY_LABELS, brandOf, sortBrands } from "../data/catalog";
+import { useEntrance } from "../lib/motion";
+import { SectionHeader } from "./shared/SectionHeader";
 
 export function Contact() {
+  const { reveal } = useEntrance();
   const [formState, setFormState] = useState({
     nombre: "",
     tel: "",
@@ -145,8 +148,8 @@ export function Contact() {
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      value: "humbertoranzugliasrl@gmail.com",
-      link: "mailto:humbertoranzugliasrl@gmail.com",
+      value: "ranzugliasrl@gmail.com",
+      link: "mailto:ranzugliasrl@gmail.com",
     },
     {
       icon: <Instagram className="w-5 h-5" />,
@@ -157,39 +160,28 @@ export function Contact() {
   ];
 
   return (
-    <section id="contacto" className="bg-accent py-20">
+    <section id="contacto" data-surface="light" className="bg-accent py-20">
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            {...reveal(0)}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-0.5 w-8 bg-ink/40" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-ink/80">
-                Hablemos
-              </span>
-            </div>
-
-            <h2 className="font-normal text-2xl md:text-4xl text-ink mb-6 leading-none">
-              Pedí tu presupuesto
-            </h2>
-
-            <p className="text-lg text-ink/80 mb-10 leading-relaxed max-w-md">
-             Te respondemos por WhatsApp en el día o te esperamos en nuestro local para asesorarte personalmente.
-            </p>
+            <SectionHeader
+              tone="accent"
+              className="mb-10"
+              eyebrow="Hablemos"
+              title="Pedí tu presupuesto"
+              description="Te respondemos por WhatsApp en el día o te esperamos en nuestro local para asesorarte personalmente."
+              descriptionClassName="max-w-md"
+            />
 
             {/* Locales: Ventas y Repuestos */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
               {locales.map((local, index) => (
                 <motion.div
                   key={local.label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  {...reveal(index)}
                   className="bg-ink/10 rounded-lg p-4 space-y-2"
                 >
                   <div className="text-xs font-black tracking-wider uppercase text-ink/80">
@@ -217,10 +209,7 @@ export function Contact() {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1 }}
+                  {...reveal(index)}
                   className="grid grid-cols-1 sm:grid-cols-[7.5rem_minmax(0,1fr)] items-baseline gap-1 sm:gap-4 py-3 border-b border-ink/10"
                 >
                   <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-ink/80">
@@ -248,10 +237,7 @@ export function Contact() {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.2 }}
+            {...reveal(2)}
           >
             <AnimatePresence mode="wait">
               {!isSuccess ? (
@@ -287,7 +273,7 @@ export function Contact() {
                         }
                         placeholder="Juan Pérez"
                         required
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
@@ -310,7 +296,7 @@ export function Contact() {
                         }
                         placeholder="2923 43 1570"
                         required
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                       <p className="text-xs text-zinc-400 mt-1">
                         Te respondemos por WhatsApp.
@@ -334,7 +320,7 @@ export function Contact() {
                             modelo: "",
                           })
                         }
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink font-medium"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink font-medium"
                         style={{
                           appearance: "none",
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
@@ -377,7 +363,7 @@ export function Contact() {
                           onChange={(e) =>
                             setFormState({ ...formState, modelo: e.target.value })
                           }
-                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink font-medium"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink font-medium"
                           style={{
                             appearance: "none",
                             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
@@ -418,7 +404,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: tractor 100 HP, sembradora directa..."
-                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -439,7 +425,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: motoniveladora, excavadora, retropala..."
-                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -460,7 +446,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: Hanomag TR 85, Gherardi G-600..."
-                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -483,7 +469,7 @@ export function Contact() {
                           })
                         }
                         placeholder="tu@email.com"
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
@@ -505,7 +491,7 @@ export function Contact() {
                           })
                         }
                         placeholder="Ej: Coronel Pringles"
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
@@ -527,7 +513,7 @@ export function Contact() {
                         }
                         placeholder="Contanos el uso que le vas a dar, tamaño del campo, etc."
                         rows={3}
-                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm resize-vertical bg-white text-ink placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 transition-all text-sm resize-vertical bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 

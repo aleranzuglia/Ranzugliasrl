@@ -4,6 +4,7 @@ import { WhatsAppIcon } from "../WhatsAppIcon";
 import { Button } from "./Button";
 import { Chip } from "./Chip";
 import type { FiltroCatalogo, MarcaOficial } from "../../data/marcas";
+import { useEntrance } from "../../lib/motion";
 
 const externalProps = {
   target: "_blank",
@@ -26,15 +27,14 @@ export function BrandCard({
   index: number;
   onVerEnCatalogo: (filtro: Omit<FiltroCatalogo, "id">) => void;
 }) {
+  const { reveal } = useEntrance();
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1 }}
+      {...reveal(index)}
       className="flex flex-col bg-surface-2 border border-white/10 rounded-lg p-6 md:p-8"
     >
-      <img
+      <img loading="lazy" decoding="async"
         src={marca.logo}
         alt={marca.nombre}
         className="h-12 w-auto object-contain self-start mb-5"

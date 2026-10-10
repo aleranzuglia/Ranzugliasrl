@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { Plus, Check, ImageOff } from "lucide-react";
-import { WhatsAppIcon } from "./WhatsAppIcon";
-import { Product } from "../data/catalog";
-import { Tooltip } from "./Tooltip";
+import { WhatsAppIcon } from "../WhatsAppIcon";
+import { Product } from "../../data/catalog";
+import { Tooltip } from "../Tooltip";
+import { useEntrance } from "../../lib/motion";
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +22,9 @@ export function ProductCard({
   onToggleCompare,
   isInCompare,
 }: ProductCardProps) {
+  const { enter, reduced } = useEntrance();
+  const exit = reduced ? {} : { exit: { opacity: 0, scale: 0.95 } };
+
   const handleWhatsApp = (e: React.MouseEvent) => {
     e.stopPropagation();
     const msg = encodeURIComponent(
@@ -40,10 +44,8 @@ export function ProductCard({
   if (viewMode === "list") {
     return (
       <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ delay: Math.min(index * 0.05, 0.3) }}
+        {...enter(index)}
+        {...exit}
         onClick={onViewDetails}
         className="group bg-white rounded-lg p-6 transition-all cursor-pointer hover:shadow-xl"
       >
@@ -57,9 +59,9 @@ export function ProductCard({
             }
           >
             {product.imagen ? (
-              <img
+              <img loading="lazy" decoding="async"
                 src={product.imagen}
-                alt={product.nombre}
+                alt={`${product.marca} ${product.nombre}`}
                 className={product.fotoCompleta ? "w-full h-full object-cover" : "w-full h-auto"}
               />
             ) : (
@@ -144,10 +146,8 @@ export function ProductCard({
   // Grid View
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ delay: Math.min(index * 0.05, 0.3) }}
+      {...enter(index)}
+      {...exit}
       onClick={onViewDetails}
       className="group bg-white rounded-lg overflow-hidden transition-all cursor-pointer hover:shadow-xl hover:-translate-y-1 flex flex-col"
     >
@@ -173,9 +173,9 @@ export function ProductCard({
         }
       >
         {product.imagen ? (
-          <img
+          <img loading="lazy" decoding="async"
             src={product.imagen}
-            alt={product.nombre}
+            alt={`${product.marca} ${product.nombre}`}
             className={product.fotoCompleta ? "w-full h-full object-cover" : "w-full h-full object-contain"}
           />
         ) : (

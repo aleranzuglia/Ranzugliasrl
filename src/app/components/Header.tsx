@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logoHR from "../../imports/humberto-ranzuglia-small.svg";
+import { scrollBehavior, useEntrance } from "../lib/motion";
 
 const navItems = [
   { id: "inicio", label: "Inicio" },
@@ -13,6 +14,7 @@ const navItems = [
 ];
 
 export function Header() {
+  const { enter } = useEntrance();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -72,7 +74,7 @@ export function Header() {
       const el = document.getElementById(id);
       if (!el) return;
       const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: scrollBehavior() });
     }, 50);
   };
 
@@ -95,7 +97,7 @@ export function Header() {
               onClick={() => scrollToSection("inicio")}
               className="flex items-center gap-3 transition-opacity hover:opacity-80 relative z-10 px-4 py-2 -ml-4 cursor-pointer"
             >
-              <img
+              <img decoding="async"
                 src={logoHR}
                 alt="Humberto Ranzuglia"
                 className="h-16 w-auto"
@@ -168,9 +170,7 @@ export function Header() {
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 + index * 0.04 }}
+                  {...enter(index + 1, { y: 12 })}
                   onClick={() => scrollToSection(item.id)}
                   className={`w-full text-left py-5 border-b border-white/10 text-xl font-bold font-sans tracking-wide uppercase transition-colors cursor-pointer ${
                     activeSection === item.id

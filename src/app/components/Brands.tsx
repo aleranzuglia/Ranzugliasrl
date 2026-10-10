@@ -10,6 +10,7 @@ import fametLogo from "../../imports/marcas/famet.jpg";
 import tecnocarLogo from "../../imports/marcas/tecnocar.png";
 import distrimaqLogo from "../../imports/marcas/distrimaq.webp";
 import sylLogo from "../../imports/marcas/syl.webp";
+import { SectionHeader } from "./shared/SectionHeader";
 
 interface Brand {
   name: string;
@@ -40,7 +41,7 @@ function BrandCard({ brand }: { brand: Brand }) {
       {brand.text ? (
         <span className="font-black text-lg text-ink">{brand.name}</span>
       ) : brand.image ? (
-        <img
+        <img loading="lazy" decoding="async"
           src={brand.image}
           alt={brand.name}
           className="max-w-full max-h-full object-contain"
@@ -55,7 +56,7 @@ function BrandCard({ brand }: { brand: Brand }) {
 
 export function Brands() {
   return (
-    <section id="marcas" className="bg-accent py-16">
+    <section id="marcas" data-surface="light" className="bg-accent py-16">
       <style>{`
         .brands-scroll { scrollbar-width: none; }
         .brands-scroll::-webkit-scrollbar { display: none; }
@@ -70,19 +71,18 @@ export function Brands() {
         .brand-marquee-wrapper:hover .brand-marquee {
           animation-play-state: paused;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .brand-marquee { animation: none; }
+        }
       `}</style>
 
       {/* Header */}
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6 mb-10">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="h-0.5 w-8 bg-zinc-700" />
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-700">
-            Marcas que distribuimos
-          </span>
-        </div>
-        <h2 className="font-normal text-2xl md:text-4xl text-ink">
-          RESPALDO DE LAS MEJORES MARCAS
-        </h2>
+        <SectionHeader
+          tone="accent"
+          eyebrow="Marcas que distribuimos"
+          title="RESPALDO DE LAS MEJORES MARCAS"
+        />
       </div>
 
       {/* Mobile: scroll manual */}

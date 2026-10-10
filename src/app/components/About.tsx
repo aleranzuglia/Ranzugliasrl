@@ -2,6 +2,8 @@ import { motion } from 'motion/react';
 import { Image as ImageIcon } from 'lucide-react';
 import hanomagLogo from '../../imports/hanomag/hanomag.png';
 import michiganLogo from '../../imports/michigan/michigan.png';
+import { useEntrance } from "../lib/motion";
+import { SectionHeader } from './shared/SectionHeader';
 
 const stats = [
   { number: '50+', label: 'Años en el mercado' },
@@ -9,26 +11,20 @@ const stats = [
 ];
 
 export function About() {
+  const { reveal } = useEntrance();
   return (
     <section id="nosotros" className="bg-ink py-20">
       <div className="w-full lg:max-w-[1024px]   xl:max-w-[1280px]  2xl:max-w-[1536px] mx-auto px-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-0.5 w-8 bg-accent" />
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
-            Quiénes somos
-          </span>
-        </div>
-
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-start">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            {...reveal(0)}
           >
-            <h2 className="font-normal text-2xl md:text-4xl text-white mb-6 leading-none">
-              Potencia y solidez en el campo
-            </h2>
+            <SectionHeader
+              className="mb-6"
+              eyebrow="Quiénes somos"
+              title="Potencia y solidez en el campo"
+            />
             <p className="text-lg text-white/80 leading-relaxed mb-4">
              Somos distribuidores oficiales de Hanomag y Michigan, y trabajamos junto a las marcas líderes del agro argentino.
             </p>
@@ -38,14 +34,14 @@ export function About() {
 
             <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 pt-6 border-t border-white/10">
               <div className="h-10 flex items-center gap-3">
-                <img
+                <img loading="lazy" decoding="async"
                   src={hanomagLogo}
-                  alt="Hanomag"
+                  alt=""
                   className="h-8 object-contain"
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   src={michiganLogo}
-                  alt="Michigan"
+                  alt=""
                   className="h-8 object-contain"
                 />
               </div>
@@ -58,19 +54,13 @@ export function About() {
           {/* Datos + foto */}
           <div className="flex flex-col gap-4">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: 0.2 }}
+              {...reveal(2)}
               className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.number}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
+                  {...reveal(index + 3)}
                   className="bg-surface-2 border border-white/10 border-l-4 border-l-accent p-6 hover:-translate-y-1 transition-transform"
                 >
                   <div className="font-black text-2xl text-white mb-2 leading-none">

@@ -172,6 +172,29 @@
   * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
   */
 
+  /* Foco visible en todo elemento interactivo. Sobre superficies claras
+     (data-surface="light") el anillo es negro; sobre oscuras, amarillo. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring, var(--color-accent));
+    outline-offset: 2px;
+  }
+
+  [data-surface="light"] {
+    --focus-ring: var(--color-ink);
+  }
+
+  /* Sin animaciones ni transiciones ni scroll suave si la persona pidio menos movimiento. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   html {
     font-size: var(--font-size);
     scroll-padding-top: 90px;
