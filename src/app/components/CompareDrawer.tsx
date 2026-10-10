@@ -66,7 +66,7 @@ function CompareContent({
     <>
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-zinc-200">
-        <h3 className="font-normal text-xl md:text-2xl tracking-tight text-ink">
+        <h3 className="font-bold text-xl md:text-2xl tracking-tight text-ink">
           Comparar Productos
         </h3>
         <div className="flex items-center gap-6">

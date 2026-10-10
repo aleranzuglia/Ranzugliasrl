@@ -28,7 +28,7 @@ export function Footer() {
                 className="h-12 w-auto"
               />
               <div>
-                <div className="text-base tracking-wide uppercase font-[Anton]">
+                <div className="text-base tracking-wide uppercase font-display">
                   Humberto Ranzuglia S.R.L
                 </div>
               </div>

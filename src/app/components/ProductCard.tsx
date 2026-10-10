@@ -77,7 +77,7 @@ export function ProductCard({
                 <div className="text-sm font-bold tracking-wider uppercase text-zinc-400 mb-1">
                   {product.marca}
                 </div>
-                <h3 className="font-normal text-2xl text-ink mb-2">
+                <h3 className="font-bold text-2xl text-ink mb-2">
                   {product.nombre}
                 </h3>
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -194,7 +194,7 @@ export function ProductCard({
         <div className="text-sm font-bold tracking-wider uppercase text-zinc-400 mb-1">
           {product.marca}
         </div>
-        <h3 className="font-normal text-xl text-ink mb-2">
+        <h3 className="font-bold text-xl text-ink mb-2">
           {product.nombre}
         </h3>
         <div className="flex flex-wrap gap-1.5 mb-3">

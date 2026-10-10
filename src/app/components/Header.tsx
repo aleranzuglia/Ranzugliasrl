@@ -101,7 +101,7 @@ export function Header() {
                 className="h-16 w-auto"
               />
               <div className="text-left hidden sm:block">
-                <div className="tracking-wider text-white text-lg font-[Anton]">
+                <div className="tracking-wider text-white text-lg font-display">
                   HUMBERTO RANZUGLIA S.R.L.
                 </div>
               </div>
@@ -172,7 +172,7 @@ export function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 + index * 0.04 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left py-5 border-b border-white/10 text-2xl font-normal font-[Anton] tracking-wide uppercase transition-colors cursor-pointer ${
+                  className={`w-full text-left py-5 border-b border-white/10 text-xl font-bold font-sans tracking-wide uppercase transition-colors cursor-pointer ${
                     activeSection === item.id
                       ? "text-accent"
                       : "text-white hover:text-accent"

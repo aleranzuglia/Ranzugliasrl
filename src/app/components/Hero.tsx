@@ -99,20 +99,20 @@ export function Hero() {
             </div>
 
             <h1 className="text-display mb-8">
-              <span className="text-white font-[Anton]">
+              <span className="text-white font-display">
                 La potencia
               </span>
               <br />
-              <span className="text-white font-[Anton]">
+              <span className="text-white font-display">
                 que necesita
               </span>
               <br />
-              <span className="text-accent mt-3 inline-block font-[Anton]">
+              <span className="text-accent mt-3 inline-block font-display">
                 tu campo
               </span>
             </h1>
 
-            <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
+            <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-[45ch]">
               Tractores Hanomag, maquinaria Michigan, sembradoras, acoplados e implementos.
               <span className="block mt-2 text-accent font-semibold">
                 + de 50 años de trayectoria en el agro argentino.

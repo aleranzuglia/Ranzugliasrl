@@ -166,7 +166,7 @@ function ProductDetail({
               <div className="text-xs font-bold tracking-[0.2em] uppercase text-black/60 mb-1">
                 {product.marca}
               </div>
-              <h2 className="text-xl md:text-2xl text-ink leading-tight font-[Anton] font-normal">
+              <h2 className="text-xl md:text-2xl text-ink leading-tight font-sans font-bold">
                 {product.nombre}
               </h2>
             </div>

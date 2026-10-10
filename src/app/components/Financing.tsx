@@ -185,7 +185,7 @@ export function Financing() {
                   transition={{ delay: 0.5 }}
                   className="bg-accent text-ink rounded-lg p-7 flex flex-col justify-center items-start"
                 >
-                  <h3 className="font-normal text-xl mb-3">
+                  <h3 className="font-bold text-xl mb-3">
                     ¿No sabés cuál te conviene?
                   </h3>
                   <p className="mb-6 leading-relaxed opacity-80 text-base">
@@ -207,7 +207,7 @@ export function Financing() {
               <div className="bg-ink border border-accent/30 rounded-xl p-8 max-w-4xl mx-auto">
                 <div className="flex flex-col items-start mb-6 gap-2">
                   <Calculator className="w-6 h-6 text-accent" />
-                  <h3 className="font-normal text-xl text-white">
+                  <h3 className="font-bold text-xl text-white">
                     Calculadora estimada de Cuotas
                   </h3>
                 </div>

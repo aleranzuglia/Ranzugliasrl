@@ -263,7 +263,7 @@ export function Contact() {
                   onSubmit={handleSubmit}
                   className="bg-white p-8"
                 >
-                  <h3 className="font-normal text-xl text-ink mb-6">
+                  <h3 className="font-bold text-xl text-ink mb-6">
                     Cotizá tu maquinaria
                   </h3>
 
@@ -578,7 +578,7 @@ export function Contact() {
                   >
                     <Check className="w-8 h-8 text-ink" />
                   </motion.div>
-                  <h3 className="font-normal text-2xl text-ink mb-3">
+                  <h3 className="font-bold text-2xl text-ink mb-3">
                     ¡Consulta enviada!
                   </h3>
                   <p className="text-zinc-600 mb-2">

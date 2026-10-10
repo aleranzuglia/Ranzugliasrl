@@ -98,7 +98,7 @@ export function SpareParts() {
                     >
                       {cat.tag}
                     </span>
-                    <h3 className="text-xl font-normal text-white mt-1">
+                    <h3 className="text-xl font-bold text-white mt-1">
                       {cat.brand}
                     </h3>
                   </div>

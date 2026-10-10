@@ -28,7 +28,7 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
           className="h-8 w-auto object-contain mt-1 shrink-0"
         />
         <div>
-          <h3 className="font-normal text-xl text-ink leading-tight">
+          <h3 className="font-bold text-xl text-ink leading-tight">
             Más modelos {marca.nombre}
           </h3>
           <p className="text-sm text-zinc-600 mt-1">

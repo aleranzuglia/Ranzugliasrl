@@ -354,7 +354,7 @@ export function Catalog({
               alt=""
               className="h-auto w-150 object-contain mx-auto mb-8"
             />
-            <h3 className="font-normal text-2xl text-ink mb-2">
+            <h3 className="font-bold text-2xl text-ink mb-2">
               No se encontraron productos
             </h3>
             <p className="text-zinc-500 mb-6">
