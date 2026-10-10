@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Button } from "./shared/Button";
 import { toast } from "sonner";
 import {
   Check,
@@ -550,15 +551,11 @@ export function Contact() {
                       </label>
                     </div>
 
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-accent cursor-pointer text-ink py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
+                    <Button type="submit" disabled={isSubmitting} className="w-full">
                       {isSubmitting
                         ? "Enviando..."
                         : "Enviar consulta"}
-                    </button>
+                    </Button>
                   </div>
                 </motion.form>
               ) : (

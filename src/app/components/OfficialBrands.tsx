@@ -1,12 +1,8 @@
 import { motion } from "motion/react";
-import { ArrowDown, ExternalLink } from "lucide-react";
-import { WhatsAppIcon } from "./WhatsAppIcon";
+import { ExternalLink } from "lucide-react";
+import { BrandCard } from "./shared/BrandCard";
+import { Chip } from "./shared/Chip";
 import { FiltroCatalogo, MARCAS_OFICIALES, MarcaOficial } from "../data/marcas";
-
-const whatsappUrl = (marca: MarcaOficial) =>
-  `https://wa.me/5492923431570?text=${encodeURIComponent(
-    `Hola, quiero consultar por productos ${marca.nombre}`,
-  )}`;
 
 const externalProps = {
   target: "_blank",
@@ -45,15 +41,15 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
                 También
               </span>
               {otrasLineas.map((linea) => (
-                <a
+                <Chip
                   key={linea.label}
+                  tone="light"
                   href={linea.url}
                   {...externalProps}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide rounded-full border transition-colors ${marca.estilos.chipTarjeta}`}
                 >
                   {linea.label}
                   <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                </a>
+                </Chip>
               ))}
             </div>
           )}
@@ -94,76 +90,12 @@ export function OfficialBrands({
 
         <div className="grid md:grid-cols-2 gap-6">
           {marcas.map((marca, index) => (
-            <motion.article
+            <BrandCard
               key={marca.nombre}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1 }}
-              className="flex flex-col bg-surface-2 border border-white/10 rounded-lg p-6 md:p-8"
-            >
-              <img
-                src={marca.logo}
-                alt={marca.nombre}
-                className="h-12 w-auto object-contain self-start mb-5"
-              />
-              <p className="text-white/70 mb-6">{marca.descripcion}</p>
-
-              <div className="text-xs font-bold tracking-[0.2em] uppercase text-text-muted-on-dark mb-3">
-                Líneas de productos
-              </div>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {marca.lineas.map((linea) => {
-                  const chipClass =
-                    "inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border cursor-pointer transition-colors";
-                  const { filtro } = linea;
-                  return filtro ? (
-                    <button
-                      key={linea.label}
-                      type="button"
-                      onClick={() =>
-                        onVerEnCatalogo({ ...filtro, marca: marca.nombre })
-                      }
-                      title={`Ver ${linea.label} en nuestro catálogo`}
-                      className={`${chipClass} ${marca.estilos.chipCatalogo}`}
-                    >
-                      {linea.label}
-                      <ArrowDown className="w-3 h-3" aria-hidden="true" />
-                    </button>
-                  ) : (
-                    <a
-                      key={linea.label}
-                      href={linea.url}
-                      {...externalProps}
-                      title={`Ver ${linea.label} en ${marca.dominio} (se abre en una pestaña nueva)`}
-                      className={`${chipClass} border-white/20 text-white/80 hover:border-white hover:text-white`}
-                    >
-                      {linea.label}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </a>
-                  );
-                })}
-              </div>
-
-              <div className="mt-auto flex flex-col sm:flex-row gap-3">
-                <a
-                  href={marca.url}
-                  {...externalProps}
-                  className={`flex-1 inline-flex items-center justify-center gap-2 border-2 px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors ${marca.estilos.botonWeb}`}
-                >
-                  Ver catálogo completo
-                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                </a>
-                <a
-                  href={whatsappUrl(marca)}
-                  {...externalProps}
-                  className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-transparent bg-whatsapp text-white px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:bg-whatsapp-hover"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  Consultar
-                </a>
-              </div>
-            </motion.article>
+              marca={marca}
+              index={index}
+              onVerEnCatalogo={onVerEnCatalogo}
+            />
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "motion/react";
+import { Button } from "./shared/Button";
 import { X } from "lucide-react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { ModalSheet } from "./ModalSheet";
@@ -253,19 +254,13 @@ function ProductDetail({
 
             {/* Actions */}
             <div className="mt-auto space-y-3 md:space-y-0 md:space-x-3 flex flex-col md:flex-row">
-              <button
-                onClick={scrollToContact}
-                className="w-full bg-accent text-ink py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover cursor-pointer"
-              >
+              <Button onClick={scrollToContact} className="w-full">
                 Pedir presupuesto
-              </button>
-              <button
-                onClick={handleWhatsApp}
-                className="w-full bg-whatsapp text-white py-4 font-semibold text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-whatsapp-hover transition-colors cursor-pointer"
-              >
+              </Button>
+              <Button variant="whatsapp" onClick={handleWhatsApp} className="w-full">
                 <WhatsAppIcon className="w-4 h-4" />
                 Consultar
-              </button>
+              </Button>
             </div>
           </div>
         </div>

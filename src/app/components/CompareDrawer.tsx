@@ -72,7 +72,7 @@ function CompareContent({
         <div className="flex items-center gap-6">
           <button
             onClick={() => { onClearAll(); onClose(); }}
-            className="text-sm font-semibold text-zinc-400 hover:text-red-500 transition-colors cursor-pointer flex items-center gap-2"
+            className="text-sm font-semibold text-zinc-500 hover:text-ink transition-colors cursor-pointer flex items-center gap-2"
           >
             <Trash2 className="w-4 h-4" />
             Limpiar todo
@@ -101,7 +101,7 @@ function CompareContent({
                 </div>
                 <button
                   onClick={() => onRemove(product)}
-                  className="text-zinc-400 hover:text-red-400 transition-colors cursor-pointer mt-0.5"
+                  className="text-zinc-400 hover:text-white transition-colors cursor-pointer mt-0.5"
                   aria-label="Quitar producto"
                 >
                   <Trash2 className="w-5 h-5" />
@@ -163,7 +163,7 @@ function CompareContent({
                     <div className="relative">
                       <button
                         onClick={() => onRemove(product)}
-                        className="absolute top-1 right-8 text-red-500 flex items-center justify-center hover:text-red-600 transition-colors z-10 cursor-pointer"
+                        className="absolute top-1 right-8 text-zinc-500 flex items-center justify-center hover:text-ink transition-colors z-10 cursor-pointer"
                         aria-label="Remover"
                       >
                         <Trash2 className="w-6 h-6" />

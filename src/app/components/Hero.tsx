@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { Button } from "./shared/Button";
 import bgHero from "../../imports/bg-hero.avif";
 
 // Tractor del hero: PNG recortado (fondo transparente) en src/imports/hanomag/hero-tractor.png (o .webp).
@@ -119,19 +120,17 @@ export function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => scrollToSection("catalogo")}
-                className="group bg-accent cursor-pointer text-ink px-8 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover flex items-center gap-2"
-              >
+              <Button onClick={() => scrollToSection("catalogo")}>
                 Ver catálogo
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="secondary"
+                tone="dark"
                 onClick={() => scrollToSection("contacto")}
-                className="px-8 py-4 font-semibold cursor-pointer text-sm tracking-wider uppercase border-2 border-white text-white transition-all hover:bg-white hover:text-ink"
               >
                 Pedir presupuesto
-              </button>
+              </Button>
             </div>
           </motion.div>
 
@@ -177,18 +176,18 @@ export function Hero() {
               delay: 0.8,
               ease: "easeOut",
             }}
-            className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-red-500/25 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
+            className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-white/15 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
           >
             <div className="flex items-center justify-between mb-5">
-              <span className="text-xs font-bold tracking-[0.28em] text-red-500">
+              <span className="text-xs font-bold tracking-[0.28em] text-accent">
                 FICHA TÉCNICA
               </span>
-              <span className="text-xs font-mono text-text-muted-on-dark">
+              <span className="text-xs tabular-nums text-text-muted-on-dark">
                 REF. {HERO_TRACTOR.ref}
               </span>
             </div>
 
-            <div className="h-px bg-red-600/60 mb-5" />
+            <div className="h-px bg-white/15 mb-5" />
 
             <div className="grid grid-cols-4 gap-4 mb-4">
               {HERO_TRACTOR.specs.map((spec) => (
@@ -198,7 +197,7 @@ export function Hero() {
                       {spec.value}
                     </span>
                     {spec.unit && (
-                      <span className="text-xs text-red-500 tracking-wider font-bold">
+                      <span className="text-xs text-white/60 tracking-wider font-bold">
                         {spec.unit}
                       </span>
                     )}
@@ -210,19 +209,9 @@ export function Hero() {
               ))}
             </div>
 
-            <p className="text-xs text-text-muted-on-dark mb-5">
+            <p className="text-xs text-text-muted-on-dark">
               {HERO_TRACTOR.detail}
             </p>
-
-            <div className="h-px bg-red-600/60 mb-5" />
-
-            <button
-              onClick={() => scrollToSection("contacto")}
-              className="w-full bg-red-600 text-white py-4 text-xs font-semibold cursor-pointer uppercase transition-all hover:bg-red-500 flex items-center justify-center gap-2 group"
-            >
-              SOLICITAR COTIZACIÓN
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
           </motion.aside>
         </div>
       </div>
@@ -235,7 +224,7 @@ export function Hero() {
         className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-ink/60 backdrop-blur-md z-20"
       >
         <div className="max-w-[1800px] mx-auto px-6 py-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono tracking-wider">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs tabular-nums tracking-wider">
             <div className="text-accent font-bold">
               EST. 1973 · + DE 50 AÑOS DE TRAYECTORIA
             </div>

@@ -279,9 +279,7 @@ export function Catalog({
                     aria-pressed={isActive}
                     className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide rounded-full border transition-all cursor-pointer ${
                       isActive
-                        ? brand === "Hanomag"
-                          ? "bg-red-600 text-white border-red-600 shadow-sm"
-                          : "bg-accent text-ink border-accent shadow-sm"
+                        ? "bg-accent text-ink border-accent shadow-sm"
                         : "bg-white text-zinc-700 border-zinc-200 hover:border-ink"
                     }`}
                   >
@@ -289,9 +287,7 @@ export function Catalog({
                     <span className="opacity-60">({count})</span>
                     {isOfficial && (
                       <span
-                        className={`rounded-sm bg-ink px-1.5 py-0.5 text-xs font-black tracking-wider uppercase ${
-                          isActive && brand === "Hanomag" ? "text-white" : "text-accent"
-                        }`}
+                        className="rounded-sm bg-ink px-1.5 py-0.5 text-xs font-black tracking-wider uppercase text-accent"
                       >
                         Oficial
                       </span>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Button } from "./shared/Button";
 import { Calculator } from "lucide-react";
 import logoNacion from "../../imports/bancos/Banco_Naci_n.svg?url";
 import logoProvincia from "../../imports/bancos/Banco_Provincia__Bs.As.__2021_.svg?url";
@@ -416,14 +417,15 @@ export function Financing() {
                     Consultanos y te pasamos los valores actualizados.
                   </p>
                 </div>
-                <a
+                <Button
                   href="https://wa.me/5492923431570?text=Hola%2C%20quiero%20consultar%20financiaci%C3%B3n%20directa%20Tecnocar%2FSYL"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 bg-accent text-ink px-6 py-3 font-semibold text-sm hover:bg-accent-hover transition-colors"
+                  size="sm"
+                  className="shrink-0"
                 >
                   Consultar precio →
-                </a>
+                </Button>
               </motion.div>
             </motion.div>
           )}
