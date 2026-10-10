@@ -34,7 +34,7 @@ export function ProductCard({
   };
 
   const getBrandColor = (marca: string) => {
-    return "bg-yellow-400";
+    return "bg-accent";
   };
 
   if (viewMode === "list") {
@@ -77,7 +77,7 @@ export function ProductCard({
                 <div className="text-sm font-bold tracking-wider uppercase text-zinc-400 mb-1">
                   {product.marca}
                 </div>
-                <h3 className="font-normal text-3xl text-zinc-950 mb-2">
+                <h3 className="font-normal text-2xl text-ink mb-2">
                   {product.nombre}
                 </h3>
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -99,7 +99,7 @@ export function ProductCard({
               <span
                 className={`px-3 py-1 text-xs font-normal tracking-wider uppercase rounded ${
                   product.estado === "nuevo"
-                    ? "bg-zinc-950 text-yellow-400"
+                    ? "bg-ink text-accent"
                     : "bg-zinc-500 text-white"
                 }`}
               >
@@ -112,7 +112,7 @@ export function ProductCard({
               <button
                 onClick={handleWhatsApp}
                 aria-label="Consultar por WhatsApp"
-                className="flex items-center justify-center self-stretch bg-[#25D366] text-white px-4 hover:bg-[#20ba57] transition-colors cursor-pointer"
+                className="flex items-center justify-center self-stretch bg-whatsapp text-white px-4 hover:bg-whatsapp-hover transition-colors cursor-pointer"
               >
                 <WhatsAppIcon className="w-4 h-4" />
               </button>
@@ -123,8 +123,8 @@ export function ProductCard({
                 }}
                 className={`flex items-center gap-2 px-4 py-2 font-semibold text-sm border-2 transition-all cursor-pointer ${
                   isInCompare
-                    ? "bg-yellow-400 border-yellow-400 text-zinc-950"
-                    : "bg-transparent border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white"
+                    ? "bg-accent border-accent text-ink"
+                    : "bg-transparent border-ink text-ink hover:bg-ink hover:text-white"
                 }`}
               >
                 {isInCompare ? (
@@ -134,7 +134,7 @@ export function ProductCard({
                 )}
                 {isInCompare ? "En comparación" : "Comparar"}
               </button>
-              <button className="text-xs font-semibold tracking-wider uppercase text-zinc-950 hover:text-yellow-400 transition-colors flex items-center gap-1 cursor-pointer">
+              <button className="text-xs font-semibold tracking-wider uppercase text-ink hover:text-accent transition-colors flex items-center gap-1 cursor-pointer">
                 Ver ficha →
               </button>
             </div>
@@ -159,7 +159,7 @@ export function ProductCard({
         <span
           className={`px-3 py-1 text-xs font-normal tracking-wider uppercase rounded ${
             product.estado === "nuevo"
-              ? "bg-zinc-950 text-yellow-400"
+              ? "bg-ink text-accent"
               : "bg-zinc-500 text-white"
           }`}
         >
@@ -194,7 +194,7 @@ export function ProductCard({
         <div className="text-sm font-bold tracking-wider uppercase text-zinc-400 mb-1">
           {product.marca}
         </div>
-        <h3 className="font-normal text-2xl text-zinc-950 mb-2">
+        <h3 className="font-normal text-xl text-ink mb-2">
           {product.nombre}
         </h3>
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -213,14 +213,14 @@ export function ProductCard({
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 mt-auto">
-          <button className="text-xs font-semibold tracking-wider uppercase text-zinc-950 hover:text-yellow-400 transition-colors flex items-center gap-1 cursor-pointer">
+          <button className="text-xs font-semibold tracking-wider uppercase text-ink hover:text-accent transition-colors flex items-center gap-1 cursor-pointer">
             Ver ficha →
           </button>
           <div className="flex items-center gap-2">
             <Tooltip text="Consultar por WhatsApp">
               <button
                 onClick={handleWhatsApp}
-                className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:bg-[#20ba57] hover:scale-110 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full bg-whatsapp text-white flex items-center justify-center hover:bg-whatsapp-hover hover:scale-110 transition-all cursor-pointer"
                 aria-label="Consultar por WhatsApp"
               >
                 <WhatsAppIcon className="w-4 h-4" />
@@ -234,8 +234,8 @@ export function ProductCard({
                 }}
                 className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all cursor-pointer ${
                   isInCompare
-                    ? "bg-yellow-400 border-yellow-400 text-zinc-950"
-                    : "border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white"
+                    ? "bg-accent border-accent text-ink"
+                    : "border-ink text-ink hover:bg-ink hover:text-white"
                 }`}
                 aria-label={isInCompare ? "Quitar de comparación" : "Agregar a comparación"}
               >

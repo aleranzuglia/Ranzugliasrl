@@ -81,10 +81,10 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isOpen
-            ? "bg-zinc-950 border-b border-white/10"
+            ? "bg-ink border-b border-white/10"
             : isScrolled
-              ? "bg-zinc-950/90 backdrop-blur-xl border-b border-white/5"
-              : "bg-zinc-950/80 backdrop-blur-md"
+              ? "bg-ink/90 backdrop-blur-xl border-b border-white/5"
+              : "bg-ink/80 backdrop-blur-md"
         }`}
       >
         {/* Main Navigation */}
@@ -101,7 +101,7 @@ export function Header() {
                 className="h-16 w-auto"
               />
               <div className="text-left hidden sm:block">
-                <div className="tracking-wider text-white text-[20px] font-[Anton]">
+                <div className="tracking-wider text-white text-lg font-[Anton]">
                   HUMBERTO RANZUGLIA S.R.L.
                 </div>
               </div>
@@ -115,15 +115,15 @@ export function Header() {
                   onClick={() => scrollToSection(item.id)}
                   className={`text-sm font-semibold tracking-wider uppercase transition-colors relative cursor-pointer ${
                     activeSection === item.id
-                      ? "text-yellow-400"
-                      : "text-white/70 hover:text-yellow-400"
+                      ? "text-accent"
+                      : "text-white/70 hover:text-accent"
                   }`}
                 >
                   {item.label}
                   {activeSection === item.id && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-yellow-400"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -138,7 +138,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-white hover:text-yellow-400 transition-colors cursor-pointer"
+              className="lg:hidden p-2 text-white hover:text-accent transition-colors cursor-pointer"
               aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={isOpen}
               aria-controls="menu-movil"
@@ -162,7 +162,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-0 z-[90] flex flex-col bg-zinc-950 pt-20"
+            className="lg:hidden fixed inset-0 z-[90] flex flex-col bg-ink pt-20"
           >
             <nav className="flex-1 overflow-y-auto overscroll-contain px-6 py-6 flex flex-col justify-center">
               {navItems.map((item, index) => (
@@ -172,10 +172,10 @@ export function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 + index * 0.04 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left py-5 border-b border-white/10 text-3xl font-normal font-[Anton] tracking-wide uppercase transition-colors cursor-pointer ${
+                  className={`w-full text-left py-5 border-b border-white/10 text-2xl font-normal font-[Anton] tracking-wide uppercase transition-colors cursor-pointer ${
                     activeSection === item.id
-                      ? "text-yellow-400"
-                      : "text-white hover:text-yellow-400"
+                      ? "text-accent"
+                      : "text-white hover:text-accent"
                   }`}
                 >
                   {item.label}
@@ -188,13 +188,13 @@ export function Header() {
                 href="https://wa.me/5492923431570"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-yellow-400 transition-colors"
+                className="flex items-center gap-3 hover:text-accent transition-colors"
               >
-                <Phone className="w-4 h-4 text-yellow-400" aria-hidden="true" />
+                <Phone className="w-4 h-4 text-accent" aria-hidden="true" />
                 Ventas · 2923 43 1570
               </a>
               <div className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-yellow-400" aria-hidden="true" />
+                <MapPin className="w-4 h-4 text-accent" aria-hidden="true" />
                 Ruta 51 km 616 · Coronel Pringles
               </div>
             </div>

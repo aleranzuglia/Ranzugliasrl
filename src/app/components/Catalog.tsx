@@ -166,13 +166,13 @@ export function Catalog({
                 Catálogo completo
               </span>
             </div>
-            <h2 className="font-normal text-4xl md:text-5xl lg:text-6xl text-zinc-950">
+            <h2 className="font-normal text-2xl md:text-4xl text-ink">
               MAQUINARIAS AGRÍCOLAS
             </h2>
           </div>
 
           {/* Tabs */}
-          <div className="flex border-2 border-zinc-950">
+          <div className="flex border-2 border-ink">
             <button
               onClick={() => {
                 setActiveTab("nuevo");
@@ -181,8 +181,8 @@ export function Catalog({
               }}
               className={`px-8 py-3 text-sm font-semibold tracking-wider uppercase transition-colors cursor-pointer ${
                 activeTab === "nuevo"
-                  ? "bg-zinc-950 text-white"
-                  : "bg-transparent text-zinc-950 hover:bg-zinc-100"
+                  ? "bg-ink text-white"
+                  : "bg-transparent text-ink hover:bg-zinc-100"
               }`}
             >
               Nuevos
@@ -195,8 +195,8 @@ export function Catalog({
               }}
               className={`px-8 py-3 text-sm font-semibold tracking-wider uppercase transition-colors cursor-pointer ${
                 activeTab === "usado"
-                  ? "bg-zinc-950 text-white"
-                  : "bg-transparent text-zinc-950 hover:bg-zinc-100"
+                  ? "bg-ink text-white"
+                  : "bg-transparent text-ink hover:bg-zinc-100"
               }`}
             >
               Usados
@@ -214,12 +214,12 @@ export function Catalog({
               placeholder="Buscar por modelo, marca, potencia..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border border-zinc-300 rounded-lg focus:border-zinc-950 focus:outline-none transition-colors text-sm text-zinc-950"
+              className="w-full pl-12 pr-4 py-4 bg-white border border-zinc-300 rounded-lg focus:border-ink focus:outline-none transition-colors text-sm text-ink"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-950 cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-ink cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -233,8 +233,8 @@ export function Catalog({
                 onClick={() => selectCategory("todos")}
                 className={`px-3 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border-2 transition-all cursor-pointer ${
                   activeCategory === "todos"
-                    ? "bg-zinc-950 text-white border-zinc-950"
-                    : "bg-white text-zinc-950 border-zinc-950 hover:bg-zinc-100"
+                    ? "bg-ink text-white border-ink"
+                    : "bg-white text-ink border-ink hover:bg-zinc-100"
                 }`}
               >
                 Todos <span className="opacity-60">({tabTotal})</span>
@@ -245,8 +245,8 @@ export function Catalog({
                   onClick={() => selectCategory(cat)}
                   className={`px-3 py-2 text-xs font-semibold tracking-wide uppercase rounded-full border-2 transition-all cursor-pointer ${
                     activeCategory === cat
-                      ? "bg-zinc-950 text-white border-zinc-950"
-                      : "bg-white text-zinc-950 border-zinc-950 hover:bg-zinc-100"
+                      ? "bg-ink text-white border-ink"
+                      : "bg-white text-ink border-ink hover:bg-zinc-100"
                   }`}
                 >
                   {CATEGORY_LABELS[cat as keyof typeof CATEGORY_LABELS]}{" "}
@@ -277,20 +277,20 @@ export function Catalog({
                     key={brand}
                     onClick={() => setActiveBrand(brand)}
                     aria-pressed={isActive}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold tracking-wide rounded-full border transition-all cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide rounded-full border transition-all cursor-pointer ${
                       isActive
                         ? brand === "Hanomag"
                           ? "bg-red-600 text-white border-red-600 shadow-sm"
-                          : "bg-yellow-400 text-zinc-950 border-yellow-400 shadow-sm"
-                        : "bg-white text-zinc-700 border-zinc-200 hover:border-zinc-950"
+                          : "bg-accent text-ink border-accent shadow-sm"
+                        : "bg-white text-zinc-700 border-zinc-200 hover:border-ink"
                     }`}
                   >
                     {brand === "todas" ? "Todas las marcas" : brand}
                     <span className="opacity-60">({count})</span>
                     {isOfficial && (
                       <span
-                        className={`rounded-sm bg-zinc-950 px-1.5 py-0.5 text-[9px] font-black tracking-wider uppercase ${
-                          isActive && brand === "Hanomag" ? "text-white" : "text-yellow-400"
+                        className={`rounded-sm bg-ink px-1.5 py-0.5 text-xs font-black tracking-wider uppercase ${
+                          isActive && brand === "Hanomag" ? "text-white" : "text-accent"
                         }`}
                       >
                         Oficial
@@ -325,8 +325,8 @@ export function Catalog({
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded transition-colors cursor-pointer ${
                   viewMode === "grid"
-                    ? "bg-zinc-950 text-white"
-                    : "text-zinc-400 hover:text-zinc-950"
+                    ? "bg-ink text-white"
+                    : "text-zinc-400 hover:text-ink"
                 }`}
                 aria-label="Vista en cuadrícula"
               >
@@ -338,8 +338,8 @@ export function Catalog({
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded transition-colors cursor-pointer ${
                   viewMode === "list"
-                    ? "bg-zinc-950 text-white"
-                    : "text-zinc-400 hover:text-zinc-950"
+                    ? "bg-ink text-white"
+                    : "text-zinc-400 hover:text-ink"
                 }`}
                 aria-label="Vista en lista"
               >
@@ -358,7 +358,7 @@ export function Catalog({
               alt=""
               className="h-auto w-150 object-contain mx-auto mb-8"
             />
-            <h3 className="font-normal text-4xl text-zinc-950 mb-2">
+            <h3 className="font-normal text-2xl text-ink mb-2">
               No se encontraron productos
             </h3>
             <p className="text-zinc-500 mb-6">
@@ -371,7 +371,7 @@ export function Catalog({
                 selectCategory("todos");
                 setActiveTab("nuevo");
               }}
-              className="bg-zinc-950 text-white px-6 py-3 font-semibold text-sm hover:bg-zinc-800 transition-colors cursor-pointer"
+              className="bg-ink text-white px-6 py-3 font-semibold text-sm hover:bg-zinc-800 transition-colors cursor-pointer"
             >
               Limpiar filtros
             </button>
@@ -410,7 +410,7 @@ export function Catalog({
             {/* Progress Bar */}
             <div className="w-full h-2 bg-zinc-300 rounded-full mb-8 overflow-hidden">
               <div
-                className="h-full bg-zinc-950 transition-all duration-500"
+                className="h-full bg-ink transition-all duration-500"
                 style={{
                   width: `${(visibleProducts.length / filteredProducts.length) * 100}%`,
                 }}
@@ -421,7 +421,7 @@ export function Catalog({
             <div className="flex justify-center">
               <button
                 onClick={() => setItemsToShow((prev) => prev + 12)}
-                className="bg-transparent text-zinc-950 px-8 py-3 font-semibold text-sm tracking-wide border-2 border-zinc-950 transition-all hover:bg-zinc-950 hover:text-white cursor-pointer"
+                className="bg-transparent text-ink px-8 py-3 font-semibold text-sm tracking-wide border-2 border-ink transition-all hover:bg-ink hover:text-white cursor-pointer"
               >
                 Ver los siguientes productos
               </button>
@@ -441,10 +441,10 @@ export function Catalog({
         <div className="fixed bottom-8 right-8 z-50 flex items-stretch shadow-2xl">
           <button
             onClick={() => setCompareDrawerOpen(true)}
-            className="flex items-center gap-3 bg-zinc-950 text-white px-6 py-4 font-semibold text-base transition-all hover:bg-zinc-800 cursor-pointer border-2 border-r-0 border-yellow-400"
+            className="flex items-center gap-3 bg-ink text-white px-6 py-4 font-semibold text-base transition-all hover:bg-zinc-800 cursor-pointer border-2 border-r-0 border-accent"
           >
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-yellow-400 text-zinc-950 flex items-center justify-center font-black text-sm">
+              <div className="w-8 h-8 rounded-full bg-accent text-ink flex items-center justify-center font-black text-sm">
                 {compareProducts.length}
               </div>
               <span>Comparar productos</span>
@@ -453,7 +453,7 @@ export function Catalog({
           </button>
           <button
             onClick={() => setCompareProducts([])}
-            className="bg-yellow-400 text-zinc-950 px-3 flex items-center justify-center hover:bg-yellow-300 transition-colors cursor-pointer border-2 border-yellow-400"
+            className="bg-accent text-ink px-3 flex items-center justify-center hover:bg-accent-hover transition-colors cursor-pointer border-2 border-accent"
             aria-label="Limpiar comparación"
           >
             <X className="w-5 h-5" />

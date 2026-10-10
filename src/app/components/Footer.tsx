@@ -16,7 +16,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-zinc-950 text-white">
+    <footer className="bg-ink text-white">
       <div className="w-full lg:max-w-[1024px]   xl:max-w-[1280px]  2xl:max-w-[1536px] mx-auto px-6 py-14">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
@@ -33,7 +33,7 @@ export function Footer() {
                 </div>
               </div>
             </div>
-            <p className="text-sm text-white/50 leading-relaxed mb-4">
+            <p className="text-sm text-text-muted-on-dark leading-relaxed mb-4">
               Distribuidor oficial Hanomag y Michigan. Sembradoras, acoplados e implementos.
             </p>
             <div className="flex gap-3">
@@ -41,7 +41,7 @@ export function Footer() {
                 href="https://www.instagram.com/humbertoranzugliasrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 border-2 border-white/20 rounded flex items-center justify-center hover:bg-yellow-400 hover:border-yellow-400 hover:text-zinc-950 transition-all"
+                className="w-9 h-9 border-2 border-white/20 rounded flex items-center justify-center hover:bg-accent hover:border-accent hover:text-ink transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -50,7 +50,7 @@ export function Footer() {
                 href="https://wa.me/5492923431570"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 border-2 border-white/20 rounded flex items-center justify-center hover:bg-yellow-400 hover:border-yellow-400 hover:text-zinc-950 transition-all"
+                className="w-9 h-9 border-2 border-white/20 rounded flex items-center justify-center hover:bg-accent hover:border-accent hover:text-ink transition-all"
                 aria-label="WhatsApp"
               >
                 <WhatsAppIcon className="w-4 h-4" />
@@ -60,7 +60,7 @@ export function Footer() {
 
           {/* Catálogo */}
           <div>
-            <div className="text-xs font-semibold tracking-wider uppercase text-yellow-400 mb-4">
+            <div className="text-xs font-semibold tracking-wider uppercase text-accent mb-4">
               Catálogo
             </div>
             <div className="space-y-2">
@@ -74,7 +74,7 @@ export function Footer() {
                 <button
                   key={item}
                   onClick={() => scrollToSection("catalogo")}
-                  className="block text-sm text-white/60 hover:text-yellow-400 transition-colors text-left cursor-pointer"
+                  className="block text-sm text-text-muted-on-dark hover:text-accent transition-colors text-left cursor-pointer"
                 >
                   {item}
                 </button>
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Empresa */}
           <div>
-            <div className="text-xs font-semibold tracking-wider uppercase text-yellow-400 mb-4">
+            <div className="text-xs font-semibold tracking-wider uppercase text-accent mb-4">
               Empresa
             </div>
             <div className="space-y-2">
@@ -99,7 +99,7 @@ export function Footer() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block text-sm text-white/60 hover:text-yellow-400 transition-colors text-left cursor-pointer"
+                  className="block text-sm text-text-muted-on-dark hover:text-accent transition-colors text-left cursor-pointer"
                 >
                   {item.label}
                 </button>
@@ -108,7 +108,7 @@ export function Footer() {
                 href="https://www.instagram.com/humbertoranzugliasrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-white/60 hover:text-yellow-400 transition-colors cursor-pointer"
+                className="block text-sm text-text-muted-on-dark hover:text-accent transition-colors cursor-pointer"
               >
                 Instagram
               </a>
@@ -117,7 +117,7 @@ export function Footer() {
 
           {/* Contacto */}
           <div>
-            <div className="text-xs font-semibold tracking-wider uppercase text-yellow-400 mb-4">
+            <div className="text-xs font-semibold tracking-wider uppercase text-accent mb-4">
               Contacto
             </div>
             <div className="space-y-3">
@@ -125,19 +125,19 @@ export function Footer() {
                 href="https://wa.me/5492923431570"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-yellow-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-text-muted-on-dark hover:text-accent transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 2923 43 1570
               </a>
               <a
                 href="mailto:ranzugliasrl@gmail.com"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-yellow-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-text-muted-on-dark hover:text-accent transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 humbertoranzugliasrl@gmail.com
               </a>
-              <div className="flex items-start gap-2 text-sm text-white/60">
+              <div className="flex items-start gap-2 text-sm text-text-muted-on-dark">
                 <MapPin className="w-4 h-4" />
                 Av. 25 de Mayo 1541, Coronel Pringles, Bs. As. <br />
                 Ruta 51 km 616, Coronel Pringles, Bs. As.
@@ -150,7 +150,7 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="w-full lg:max-w-[1024px]   xl:max-w-[1280px]  2xl:max-w-[1536px] mx-auto px-6 py-5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-text-muted-on-dark">
             <div>© {year} Humberto Ranzuglia S.R.L.</div>
             <div>
              Distribuidor oficial Hanomag · Michigan · Coronel Pringles
@@ -161,7 +161,7 @@ export function Footer() {
                 href="https://alejandraranzuglia.com.ar"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-accent transition-colors"
               >
                 Alejandra Ranzuglia
               </a>

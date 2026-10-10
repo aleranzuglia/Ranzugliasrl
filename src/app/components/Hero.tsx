@@ -48,7 +48,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-start md:items-center overflow-x-hidden md:overflow-hidden bg-zinc-950"
+      className="relative min-h-screen flex items-start md:items-center overflow-x-hidden md:overflow-hidden bg-ink"
     >
       {/* Campo Background Image with Overlay */}
       <div
@@ -59,7 +59,7 @@ export function Hero() {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-zinc-950/90 to-black/95" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-ink/90 to-black/95" />
 
       {/* Additional vignette effect */}
       <div
@@ -91,13 +91,13 @@ export function Hero() {
             className="relative z-20 max-w-full md:max-w-[32rem] pr-8 xl:max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-0.5 w-12 bg-yellow-400" />
-              <span className="text-xs font-bold tracking-[0.3em] uppercase text-yellow-400">
+              <div className="h-0.5 w-12 bg-accent" />
+              <span className="text-xs font-bold tracking-[0.3em] uppercase text-accent">
                 Coronel Pringles · Buenos Aires
               </span>
             </div>
 
-            <h1 className="text-7xl lg:text-8xl xl:text-[8.5rem]  leading-[0.95] mb-8 ">
+            <h1 className="text-display mb-8">
               <span className="text-white font-[Anton]">
                 La potencia
               </span>
@@ -106,14 +106,14 @@ export function Hero() {
                 que necesita
               </span>
               <br />
-              <span className="text-yellow-400 mt-3 inline-block font-[Anton]">
+              <span className="text-accent mt-3 inline-block font-[Anton]">
                 tu campo
               </span>
             </h1>
 
-            <p className="text-xl text-white/70 leading-relaxed mb-10 max-w-2xl">
+            <p className="text-lg text-white/70 leading-relaxed mb-10 max-w-2xl">
               Tractores Hanomag, maquinaria Michigan, sembradoras, acoplados e implementos.
-              <span className="block mt-2 text-yellow-400 font-semibold">
+              <span className="block mt-2 text-accent font-semibold">
                 + de 50 años de trayectoria en el agro argentino.
               </span>
             </p>
@@ -121,14 +121,14 @@ export function Hero() {
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => scrollToSection("catalogo")}
-                className="group bg-yellow-400 cursor-pointer text-zinc-950 px-8 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-yellow-300 flex items-center gap-2"
+                className="group bg-accent cursor-pointer text-ink px-8 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover flex items-center gap-2"
               >
                 Ver catálogo
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <button
                 onClick={() => scrollToSection("contacto")}
-                className="px-8 py-4 font-semibold cursor-pointer text-sm tracking-wider uppercase border-2 border-white text-white transition-all hover:bg-white hover:text-zinc-950"
+                className="px-8 py-4 font-semibold cursor-pointer text-sm tracking-wider uppercase border-2 border-white text-white transition-all hover:bg-white hover:text-ink"
               >
                 Pedir presupuesto
               </button>
@@ -177,13 +177,13 @@ export function Hero() {
               delay: 0.8,
               ease: "easeOut",
             }}
-            className="absolute bottom-8 right-8 w-120 bg-zinc-950/70 backdrop-blur-md border border-red-500/25 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
+            className="absolute bottom-8 right-8 w-120 bg-ink/70 backdrop-blur-md border border-red-500/25 p-7 shadow-[0_25px_70px_rgba(0,0,0,0.7)] hidden lg:block z-40"
           >
             <div className="flex items-center justify-between mb-5">
               <span className="text-xs font-bold tracking-[0.28em] text-red-500">
                 FICHA TÉCNICA
               </span>
-              <span className="text-xs font-mono text-white/50">
+              <span className="text-xs font-mono text-text-muted-on-dark">
                 REF. {HERO_TRACTOR.ref}
               </span>
             </div>
@@ -194,7 +194,7 @@ export function Hero() {
               {HERO_TRACTOR.specs.map((spec) => (
                 <div key={spec.label}>
                   <div className="flex items-baseline gap-1 mb-1">
-                    <span className="font-black text-3xl text-white">
+                    <span className="font-black text-2xl text-white">
                       {spec.value}
                     </span>
                     {spec.unit && (
@@ -203,14 +203,14 @@ export function Hero() {
                       </span>
                     )}
                   </div>
-                  <div className="text-[10px] text-white/50 tracking-wide uppercase">
+                  <div className="text-xs text-text-muted-on-dark tracking-wide uppercase">
                     {spec.label}
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-[11px] text-white/50 mb-5">
+            <p className="text-xs text-text-muted-on-dark mb-5">
               {HERO_TRACTOR.detail}
             </p>
 
@@ -232,14 +232,14 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1 }}
-        className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-zinc-950/60 backdrop-blur-md z-20"
+        className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-ink/60 backdrop-blur-md z-20"
       >
         <div className="max-w-[1800px] mx-auto px-6 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono tracking-wider">
-            <div className="text-yellow-400 font-bold">
+            <div className="text-accent font-bold">
               EST. 1973 · + DE 50 AÑOS DE TRAYECTORIA
             </div>
-            <div className="text-white/50">
+            <div className="text-text-muted-on-dark">
               Distribuidor oficial Hanomag · Michigan
             </div>
           </div>

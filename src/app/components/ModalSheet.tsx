@@ -56,14 +56,14 @@ export function ModalSheet({
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        className={`relative flex flex-col w-full ${maxWidthClass} max-h-[92dvh] md:max-h-[80vh] overflow-hidden bg-white rounded-t-2xl md:rounded-xl border-2 border-b-0 md:border-b-2 border-zinc-950 shadow-2xl pb-[env(safe-area-inset-bottom)] md:pb-0 ${panelClassName}`}
+        className={`relative flex flex-col w-full ${maxWidthClass} max-h-[92dvh] md:max-h-[80vh] overflow-hidden bg-white rounded-t-2xl md:rounded-xl border-2 border-b-0 md:border-b-2 border-ink shadow-2xl pb-[env(safe-area-inset-bottom)] md:pb-0 ${panelClassName}`}
       >
         {/* Barra para arrastrar y cerrar (solo celular) */}
         <div
           onPointerDown={(e) => dragControls.start(e)}
           className="md:hidden absolute top-0 left-1/2 z-20 flex h-6 w-24 -translate-x-1/2 cursor-grab touch-none justify-center pt-2"
         >
-          <span className="h-1.5 w-10 rounded-full bg-zinc-900/30" />
+          <span className="h-1.5 w-10 rounded-full bg-surface-2/30" />
         </div>
         {children}
       </motion.div>

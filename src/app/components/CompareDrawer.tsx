@@ -66,7 +66,7 @@ function CompareContent({
     <>
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-zinc-200">
-        <h3 className="font-normal text-2xl md:text-3xl tracking-tight text-zinc-950">
+        <h3 className="font-normal text-xl md:text-2xl tracking-tight text-ink">
           Comparar Productos
         </h3>
         <div className="flex items-center gap-6">
@@ -79,7 +79,7 @@ function CompareContent({
           </button>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-zinc-950 text-white flex items-center justify-center hover:bg-yellow-400 hover:text-zinc-950 transition-colors cursor-pointer"
+            className="w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center hover:bg-accent hover:text-ink transition-colors cursor-pointer"
             aria-label="Cerrar"
           >
             <X className="w-5 h-5" />
@@ -94,7 +94,7 @@ function CompareContent({
           {products.map((product) => (
             <div key={product.id} className="border border-zinc-200 rounded-xl overflow-hidden">
               {/* Card header */}
-              <div className="flex items-start justify-between bg-zinc-950 text-white px-4 py-3">
+              <div className="flex items-start justify-between bg-ink text-white px-4 py-3">
                 <div>
                   <div className="font-black text-base leading-tight">{product.nombre}</div>
                   <div className="text-xs text-zinc-400 mt-0.5">{product.marca}</div>
@@ -168,7 +168,7 @@ function CompareContent({
                       >
                         <Trash2 className="w-6 h-6" />
                       </button>
-                      <div className="font-black text-lg text-zinc-950 text-left">
+                      <div className="font-black text-lg text-ink text-left">
                         {product.nombre}
                       </div>
                       <div className="text-xs text-zinc-500 text-left mt-1">

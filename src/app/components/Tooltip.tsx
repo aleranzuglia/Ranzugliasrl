@@ -44,7 +44,7 @@ export function Tooltip({ text, children, position = "top" }: TooltipProps) {
               zIndex: 9999,
               pointerEvents: "none",
             }}
-            className="px-2 py-1 rounded bg-zinc-950 text-white text-xs font-medium whitespace-nowrap"
+            className="px-2 py-1 rounded bg-ink text-white text-xs font-medium whitespace-nowrap"
           >
             {text}
             <span

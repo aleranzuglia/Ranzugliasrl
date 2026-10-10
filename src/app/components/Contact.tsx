@@ -156,7 +156,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contacto" className="bg-yellow-400 py-20">
+    <section id="contacto" className="bg-accent py-20">
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Info */}
@@ -166,17 +166,17 @@ export function Contact() {
             viewport={{ once: true, margin: "-50px" }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-0.5 w-8 bg-zinc-950/40" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-950/50">
+              <div className="h-0.5 w-8 bg-ink/40" />
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-ink/50">
                 Hablemos
               </span>
             </div>
 
-            <h2 className="font-normal text-5xl md:text-6xl lg:text-7xl  text-zinc-950 mb-6 leading-none">
+            <h2 className="font-normal text-2xl md:text-4xl text-ink mb-6 leading-none">
               Pedí tu presupuesto
             </h2>
 
-            <p className="text-lg text-zinc-950/80 mb-10 leading-relaxed max-w-md">
+            <p className="text-lg text-ink/80 mb-10 leading-relaxed max-w-md">
              Te respondemos por WhatsApp en el día o te esperamos en nuestro local para asesorarte personalmente.
             </p>
 
@@ -189,21 +189,21 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-zinc-950/10 rounded-lg p-4 space-y-2"
+                  className="bg-ink/10 rounded-lg p-4 space-y-2"
                 >
-                  <div className="text-xs font-black tracking-wider uppercase text-zinc-950/50">
+                  <div className="text-xs font-black tracking-wider uppercase text-ink/50">
                     {local.label}
                   </div>
                   <a
                     href={local.phoneLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-bold text-zinc-950 hover:underline text-sm"
+                    className="flex items-center gap-1.5 font-bold text-ink hover:underline text-sm"
                   >
                     <Phone className="w-4 h-4 shrink-0" />
                     {local.phone}
                   </a>
-                  <div className="flex items-start gap-1.5 text-sm text-zinc-950/70">
+                  <div className="flex items-start gap-1.5 text-sm text-ink/70">
                     <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
                     {local.address}
                   </div>
@@ -220,9 +220,9 @@ export function Contact() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: index * 0.1 }}
-                  className="grid grid-cols-[100px,1fr] items-baseline gap-4 py-3 border-b border-zinc-950/10"
+                  className="grid grid-cols-[100px,1fr] items-baseline gap-4 py-3 border-b border-ink/10"
                 >
-                  <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-zinc-950/50">
+                  <div className="flex items-center gap-2 text-sm font-black tracking-wider uppercase text-ink/50">
                     {info.icon}
                     {info.label}
                   </div>
@@ -231,12 +231,12 @@ export function Contact() {
                       href={info.link}
                       target={info.link.startsWith("http") ? "_blank" : undefined}
                       rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="font-semibold text-base text-zinc-950 hover:underline"
+                      className="font-semibold text-base text-ink hover:underline"
                     >
                       {info.value}
                     </a>
                   ) : (
-                    <span className="font-semibold text-base text-zinc-950">
+                    <span className="font-semibold text-base text-ink">
                       {info.value}
                     </span>
                   )}
@@ -262,7 +262,7 @@ export function Contact() {
                   onSubmit={handleSubmit}
                   className="bg-white p-8"
                 >
-                  <h3 className="font-normal text-2xl text-zinc-950 mb-6">
+                  <h3 className="font-normal text-xl text-ink mb-6">
                     Cotizá tu maquinaria
                   </h3>
 
@@ -270,7 +270,7 @@ export function Contact() {
                     <div>
                       <label
                         htmlFor="nombre"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Nombre
                       </label>
@@ -286,14 +286,14 @@ export function Contact() {
                         }
                         placeholder="Juan Pérez"
                         required
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="tel"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Teléfono / WhatsApp
                       </label>
@@ -309,7 +309,7 @@ export function Contact() {
                         }
                         placeholder="2923 43 1570"
                         required
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                       <p className="text-xs text-zinc-400 mt-1">
                         Te respondemos por WhatsApp.
@@ -319,7 +319,7 @@ export function Contact() {
                     <div>
                       <label
                         htmlFor="tipo"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Tipo de maquinaria
                       </label>
@@ -333,7 +333,7 @@ export function Contact() {
                             modelo: "",
                           })
                         }
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 font-medium"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink font-medium"
                         style={{
                           appearance: "none",
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
@@ -346,17 +346,17 @@ export function Contact() {
                           — Seleccioná una categoría —
                         </option>
                         {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-                          <option key={value} value={value} className="text-zinc-950 font-medium">
+                          <option key={value} value={value} className="text-ink font-medium">
                             {label}
                           </option>
                         ))}
-                        <option value="usado" className="text-zinc-950 font-medium">
+                        <option value="usado" className="text-ink font-medium">
                           Maquinaria usada
                         </option>
-                        <option value="repuesto" className="text-zinc-950 font-medium">
+                        <option value="repuesto" className="text-ink font-medium">
                           Repuestos
                         </option>
-                        <option value="otro" className="text-zinc-950 font-medium">
+                        <option value="otro" className="text-ink font-medium">
                           Otro / consultar
                         </option>
                       </select>
@@ -366,7 +366,7 @@ export function Contact() {
                       <div>
                         <label
                           htmlFor="modelo"
-                          className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                          className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                         >
                           Modelo
                         </label>
@@ -376,7 +376,7 @@ export function Contact() {
                           onChange={(e) =>
                             setFormState({ ...formState, modelo: e.target.value })
                           }
-                          className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 font-medium"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink font-medium"
                           style={{
                             appearance: "none",
                             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
@@ -391,7 +391,7 @@ export function Contact() {
                           {modeloGroups.map(({ brand, modelos }) => (
                             <optgroup key={brand} label={brand}>
                               {modelos.map((m) => (
-                                <option key={m} value={`${brand} ${m}`} className="text-zinc-950 font-medium">
+                                <option key={m} value={`${brand} ${m}`} className="text-ink font-medium">
                                   {m}
                                 </option>
                               ))}
@@ -405,7 +405,7 @@ export function Contact() {
                       <div>
                         <label
                           htmlFor="modelo"
-                          className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                          className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                         >
                           ¿Qué maquinaria buscás?
                         </label>
@@ -417,7 +417,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: tractor 100 HP, sembradora directa..."
-                          className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -426,7 +426,7 @@ export function Contact() {
                       <div>
                         <label
                           htmlFor="modelo"
-                          className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                          className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                         >
                           ¿Qué equipo te interesa?
                         </label>
@@ -438,7 +438,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: motoniveladora, excavadora, retropala..."
-                          className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -447,7 +447,7 @@ export function Contact() {
                       <div>
                         <label
                           htmlFor="modelo"
-                          className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                          className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                         >
                           ¿Para qué equipo?
                         </label>
@@ -459,7 +459,7 @@ export function Contact() {
                             setFormState({ ...formState, modelo: e.target.value })
                           }
                           placeholder="Ej: Hanomag TR 85, Gherardi G-600..."
-                          className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                          className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                         />
                       </div>
                     )}
@@ -467,7 +467,7 @@ export function Contact() {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Email (opcional)
                       </label>
@@ -482,14 +482,14 @@ export function Contact() {
                           })
                         }
                         placeholder="tu@email.com"
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="localidad"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Localidad (opcional)
                       </label>
@@ -504,14 +504,14 @@ export function Contact() {
                           })
                         }
                         placeholder="Ej: Coronel Pringles"
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm bg-white text-zinc-950 placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="mensaje"
-                        className="block text-xs font-bold tracking-wider uppercase text-zinc-950 mb-2"
+                        className="block text-xs font-bold tracking-wider uppercase text-ink mb-2"
                       >
                         Mensaje
                       </label>
@@ -526,7 +526,7 @@ export function Contact() {
                         }
                         placeholder="Contanos el uso que le vas a dar, tamaño del campo, etc."
                         rows={3}
-                        className="w-full px-4 py-3 border-2 border-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-400/50 outline-none transition-all text-sm resize-vertical bg-white text-zinc-950 placeholder:text-zinc-400"
+                        className="w-full px-4 py-3 border-2 border-ink focus:border-ink focus:ring-4 focus:ring-accent/50 outline-none transition-all text-sm resize-vertical bg-white text-ink placeholder:text-zinc-400"
                       />
                     </div>
 
@@ -541,7 +541,7 @@ export function Contact() {
                               financiamiento: e.target.checked,
                             })
                           }
-                          className="w-5 h-5 accent-zinc-950"
+                          className="w-5 h-5 accent-ink"
                         />
                         <span className="text-sm text-zinc-600">
                           Quiero información sobre
@@ -553,7 +553,7 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-yellow-400 cursor-pointer text-zinc-950 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-yellow-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-accent cursor-pointer text-ink py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting
                         ? "Enviando..."
@@ -567,7 +567,7 @@ export function Contact() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="bg-white rounded-xl p-12 shadow-[8px_8px_0_0_rgba(10,10,10,0.5)] border-2 border-zinc-950 text-center"
+                  className="bg-white rounded-xl p-12 shadow-[8px_8px_0_0_rgba(10,10,10,0.5)] border-2 border-ink text-center"
                 >
                   <motion.div
                     initial={{ scale: 0 }}
@@ -577,11 +577,11 @@ export function Contact() {
                       stiffness: 200,
                       delay: 0.2,
                     }}
-                    className="w-16 h-16 rounded-full bg-yellow-400 border-2 border-zinc-950 flex items-center justify-center mx-auto mb-6"
+                    className="w-16 h-16 rounded-full bg-accent border-2 border-ink flex items-center justify-center mx-auto mb-6"
                   >
-                    <Check className="w-8 h-8 text-zinc-950" />
+                    <Check className="w-8 h-8 text-ink" />
                   </motion.div>
-                  <h3 className="font-normal text-3xl text-zinc-950 mb-3">
+                  <h3 className="font-normal text-2xl text-ink mb-3">
                     ¡Consulta enviada!
                   </h3>
                   <p className="text-zinc-600 mb-2">
@@ -593,14 +593,14 @@ export function Contact() {
                       href={`https://wa.me/5492923431570?text=${buildWhatsAppText()}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-zinc-600 hover:text-zinc-950"
+                      className="underline text-zinc-600 hover:text-ink"
                     >
                       hacé clic acá
                     </a>.
                   </p>
                   <button
                     onClick={() => setIsSuccess(false)}
-                    className="bg-transparent border-2 border-zinc-950 text-zinc-950 px-6 py-3 font-semibold text-sm hover:bg-zinc-950 hover:text-white transition-colors"
+                    className="bg-transparent border-2 border-ink text-ink px-6 py-3 font-semibold text-sm hover:bg-ink hover:text-white transition-colors"
                   >
                     Enviar otra consulta
                   </button>

@@ -27,7 +27,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
           >
-            <h2 className="font-normal text-4xl md:text-5xl lg:text-6xl text-zinc-950 mb-6 leading-none">
+            <h2 className="font-normal text-2xl md:text-4xl text-ink mb-6 leading-none">
               Potencia y solidez en el campo
             </h2>
             <p className="text-lg text-zinc-700 leading-relaxed mb-4">
@@ -73,7 +73,7 @@ export function About() {
                 transition={{ delay: 0.3 + index * 0.1 }}
                 className="bg-white border border-zinc-200 border-l-4 border-l-yellow-400 p-6 hover:-translate-y-1 transition-transform"
               >
-                <div className="font-black text-4xl text-zinc-950 mb-2 leading-none">
+                <div className="font-black text-2xl text-ink mb-2 leading-none">
                   {stat.number}
                 </div>
                 <div className="text-xs font-bold tracking-wider uppercase text-zinc-400">

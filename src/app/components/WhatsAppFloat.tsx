@@ -12,7 +12,7 @@ export function WhatsAppFloat() {
       transition={{ delay: 1, type: 'spring', stiffness: 200 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-40 flex items-center justify-center bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-[#25D366]/30 hover:shadow-2xl transition-all group"
+      className="fixed bottom-6 right-6 z-40 flex items-center justify-center bg-whatsapp text-white p-4 rounded-full shadow-lg hover:shadow-whatsapp/30 hover:shadow-2xl transition-all group"
       aria-label="Contactar por WhatsApp"
     >
       <WhatsAppIcon className="w-6 h-6 group-hover:rotate-12 transition-transform" />

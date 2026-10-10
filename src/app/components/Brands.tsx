@@ -36,9 +36,9 @@ const brands: Brand[] = [
 
 function BrandCard({ brand }: { brand: Brand }) {
   return (
-    <div className="bg-white border border-zinc-200 rounded-lg h-20 w-28 flex items-center justify-center p-3 transition-all hover:border-zinc-950 hover:-translate-y-1 hover:shadow-lg select-none">
+    <div className="bg-white border border-zinc-200 rounded-lg h-20 w-28 flex items-center justify-center p-3 transition-all hover:border-ink hover:-translate-y-1 hover:shadow-lg select-none">
       {brand.text ? (
-        <span className="font-black text-xl text-zinc-950">{brand.name}</span>
+        <span className="font-black text-lg text-ink">{brand.name}</span>
       ) : brand.image ? (
         <img
           src={brand.image}
@@ -55,7 +55,7 @@ function BrandCard({ brand }: { brand: Brand }) {
 
 export function Brands() {
   return (
-    <section id="marcas" className="bg-yellow-400 py-16">
+    <section id="marcas" className="bg-accent py-16">
       <style>{`
         .brands-scroll { scrollbar-width: none; }
         .brands-scroll::-webkit-scrollbar { display: none; }
@@ -80,7 +80,7 @@ export function Brands() {
             Marcas que distribuimos
           </span>
         </div>
-        <h2 className="font-normal text-4xl md:text-5xl text-zinc-950">
+        <h2 className="font-normal text-2xl md:text-4xl text-ink">
           RESPALDO DE LAS MEJORES MARCAS
         </h2>
       </div>
@@ -115,8 +115,8 @@ export function Brands() {
 
       {/* Desktop: carrusel con loop infinito */}
       <div className="relative overflow-hidden brand-marquee-wrapper py-4 hidden lg:block">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-yellow-400 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-yellow-400 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-accent to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-accent to-transparent z-10" />
         <div className="brand-marquee flex">
           {[...brands, ...brands].map((brand, i) => {
             const wrapper = "px-1.5 flex-shrink-0";

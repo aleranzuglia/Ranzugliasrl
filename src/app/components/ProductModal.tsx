@@ -85,7 +85,7 @@ function ProductDetail({
   };
 
   const getBrandColor = (marca: string) => {
-    return "bg-yellow-400";
+    return "bg-accent";
   };
 
   const hasGallery = !!product.imagenes && product.imagenes.length > 1;
@@ -95,7 +95,7 @@ function ProductDetail({
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 rounded-full bg-zinc-950 text-white flex items-center justify-center hover:bg-yellow-400 hover:text-zinc-950 transition-colors z-10 cursor-pointer"
+        className="absolute top-3 right-3 md:top-4 md:right-4 w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center hover:bg-accent hover:text-ink transition-colors z-10 cursor-pointer"
         aria-label="Cerrar"
       >
         <X className="w-5 h-5" />
@@ -131,7 +131,7 @@ function ProductDetail({
                   />
                 )
               ) : (
-                <span className="font-black text-5xl text-white">
+                <span className="font-black text-4xl text-white">
                   {product.marca}
                 </span>
               )}
@@ -146,7 +146,7 @@ function ProductDetail({
                     onClick={() => setActiveImage(img)}
                     className={`w-16 h-16 rounded-md overflow-hidden border-2 flex-shrink-0 transition-colors cursor-pointer ${
                       activeImage === img
-                        ? "border-yellow-400"
+                        ? "border-accent"
                         : "border-transparent hover:border-zinc-300"
                     }`}
                   >
@@ -165,7 +165,7 @@ function ProductDetail({
               <div className="text-xs font-bold tracking-[0.2em] uppercase text-black/60 mb-1">
                 {product.marca}
               </div>
-              <h2 className="text-2xl md:text-3xl text-zinc-950 leading-tight font-[Anton] font-normal">
+              <h2 className="text-xl md:text-2xl text-ink leading-tight font-[Anton] font-normal">
                 {product.nombre}
               </h2>
             </div>
@@ -183,7 +183,7 @@ function ProductDetail({
                 <div className="text-xs font-bold tracking-wider uppercase text-zinc-400 mb-1">
                   Potencia
                 </div>
-                <div className="font-bold text-sm text-zinc-950">
+                <div className="font-bold text-sm text-ink">
                   {product.hp || "—"}
                 </div>
               </div>
@@ -191,7 +191,7 @@ function ProductDetail({
                 <div className="text-xs font-bold tracking-wider uppercase text-zinc-400 mb-1">
                   Peso
                 </div>
-                <div className="font-bold text-sm text-zinc-950">
+                <div className="font-bold text-sm text-ink">
                   {product.peso || "—"}
                 </div>
               </div>
@@ -199,7 +199,7 @@ function ProductDetail({
                 <div className="text-xs font-bold tracking-wider uppercase text-zinc-400 mb-1">
                   Cabina
                 </div>
-                <div className="font-bold text-sm text-zinc-950">
+                <div className="font-bold text-sm text-ink">
                   {product.cabina || "—"}
                 </div>
               </div>
@@ -208,7 +208,7 @@ function ProductDetail({
                   <div className="text-xs font-bold tracking-wider uppercase text-zinc-400 mb-1">
                     Origen
                   </div>
-                  <div className="font-bold text-sm text-zinc-950">
+                  <div className="font-bold text-sm text-ink">
                     {product.origen}
                   </div>
                 </div>
@@ -234,7 +234,7 @@ function ProductDetail({
             {/* Ficha técnica completa */}
             {product.specs && product.specs.length > 0 && (
               <details className="group mb-6 border border-zinc-200 rounded-md">
-                <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold tracking-wider uppercase text-zinc-950 flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+                <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold tracking-wider uppercase text-ink flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
                   Ficha técnica completa
                   <span className="text-zinc-400 transition-transform group-open:rotate-180">▾</span>
                 </summary>
@@ -244,7 +244,7 @@ function ProductDetail({
                       <dt className="text-xs font-bold tracking-wider uppercase text-zinc-400">
                         {spec.label}
                       </dt>
-                      <dd className="font-semibold text-zinc-950">{spec.value}</dd>
+                      <dd className="font-semibold text-ink">{spec.value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -255,13 +255,13 @@ function ProductDetail({
             <div className="mt-auto space-y-3 md:space-y-0 md:space-x-3 flex flex-col md:flex-row">
               <button
                 onClick={scrollToContact}
-                className="w-full bg-yellow-400 text-zinc-950 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-yellow-300 cursor-pointer"
+                className="w-full bg-accent text-ink py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-accent-hover cursor-pointer"
               >
                 Pedir presupuesto
               </button>
               <button
                 onClick={handleWhatsApp}
-                className="w-full bg-[#25D366] text-white py-4 font-semibold text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-[#20ba57] transition-colors cursor-pointer"
+                className="w-full bg-whatsapp text-white py-4 font-semibold text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-whatsapp-hover transition-colors cursor-pointer"
               >
                 <WhatsAppIcon className="w-4 h-4" />
                 Consultar

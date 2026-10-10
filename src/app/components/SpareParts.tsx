@@ -47,22 +47,22 @@ export function SpareParts() {
   return (
     <section
       id="repuestos"
-      className="bg-zinc-950 py-20 border-y border-white/5"
+      className="bg-ink py-20 border-y border-white/5"
     >
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-0.5 w-8 bg-yellow-400" />
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-yellow-400">
+            <div className="h-0.5 w-8 bg-accent" />
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
               Repuestos
             </span>
-            <div className="h-0.5 w-8 bg-yellow-400" />
+            <div className="h-0.5 w-8 bg-accent" />
           </div>
-          <h2 className="font-normal text-4xl md:text-5xl text-white mb-4">
+          <h2 className="font-normal text-2xl md:text-4xl text-white mb-4">
             REPUESTOS Y SUMINISTROS
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-text-muted-on-dark max-w-2xl mx-auto">
             Todo lo que tu maquinaria necesita para seguir trabajando, con
             repuestos originales y productos de las mejores marcas del agro.
           </p>
@@ -83,7 +83,7 @@ export function SpareParts() {
                   relative rounded-xl p-8 flex flex-col gap-5 transition-all
                   ${
                     cat.featured
-                      ? "bg-yellow-400/10 border border-yellow-400/40 hover:border-yellow-400/70"
+                      ? "bg-accent/10 border border-accent/40 hover:border-accent/70"
                       : "bg-white/5 border border-white/10 hover:bg-white/8 hover:border-white/20"
                   }
                 `}
@@ -93,25 +93,25 @@ export function SpareParts() {
                   <div>
                     <span
                       className={`text-xs font-bold tracking-[0.18em] uppercase ${
-                        cat.featured ? "text-yellow-400" : "text-white/40"
+                        cat.featured ? "text-accent" : "text-text-muted-on-dark"
                       }`}
                     >
                       {cat.tag}
                     </span>
-                    <h3 className="text-2xl font-normal text-white mt-1">
+                    <h3 className="text-xl font-normal text-white mt-1">
                       {cat.brand}
                     </h3>
                   </div>
                   <div
                     className={`p-3 rounded-lg ${
                       cat.featured
-                        ? "bg-yellow-400/20"
+                        ? "bg-accent/20"
                         : "bg-white/8"
                     }`}
                   >
                     <Icon
                       className={`w-5 h-5 ${
-                        cat.featured ? "text-yellow-400" : "text-white/60"
+                        cat.featured ? "text-accent" : "text-text-muted-on-dark"
                       }`}
                     />
                   </div>
@@ -122,7 +122,7 @@ export function SpareParts() {
                   <p className="font-semibold text-white/90 mb-2 leading-snug">
                     {cat.headline}
                   </p>
-                  <p className="text-white/55 text-[15px] leading-relaxed">
+                  <p className="text-text-muted-on-dark text-base leading-relaxed">
                     {cat.description}
                   </p>
                 </div>
@@ -133,7 +133,7 @@ export function SpareParts() {
                     {cat.highlights.map((item) => (
                       <span
                         key={item}
-                        className="text-xs px-2.5 py-1 rounded-full bg-white/8 border border-white/10 text-white/60"
+                        className="text-xs px-2.5 py-1 rounded-full bg-white/8 border border-white/10 text-text-muted-on-dark"
                       >
                         {item}
                       </span>
@@ -143,20 +143,20 @@ export function SpareParts() {
 
                 {/* Payment terms — Ingersoll only */}
                 {cat.paymentDays && (
-                  <div className="mt-auto pt-4 border-t border-yellow-400/20">
-                    <p className="text-xs font-bold tracking-[0.15em] uppercase text-yellow-400/70 mb-3">
+                  <div className="mt-auto pt-4 border-t border-accent/20">
+                    <p className="text-xs font-bold tracking-[0.15em] uppercase text-accent/70 mb-3">
                       Financiación propia
                     </p>
                     <div className="flex gap-2">
                       {cat.paymentDays.map((d) => (
                         <div
                           key={d}
-                          className="flex-1 text-center py-2.5 rounded-lg bg-yellow-400/15 border border-yellow-400/30"
+                          className="flex-1 text-center py-2.5 rounded-lg bg-accent/15 border border-accent/30"
                         >
-                          <span className="block text-lg font-black text-yellow-400 leading-none">
+                          <span className="block text-lg font-black text-accent leading-none">
                             {d}
                           </span>
-                          <span className="text-[10px] text-yellow-400/60 font-semibold uppercase tracking-wide">
+                          <span className="text-xs text-accent/60 font-semibold uppercase tracking-wide">
                             días
                           </span>
                         </div>
@@ -178,10 +178,10 @@ export function SpareParts() {
           className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-white/5 border border-white/10 rounded-xl px-8 py-6"
         >
           <div>
-            <p className="text-white font-semibold text-lg md:text-2xl leading-snug">
+            <p className="text-white font-semibold text-lg md:text-xl leading-snug">
               ¿Necesitás un repuesto o querés saber disponibilidad?
             </p>
-            <p className="text-white/50 text-md md:text-lg mt-1">
+            <p className="text-text-muted-on-dark text-md md:text-lg mt-1">
               Consultanos por WhatsApp y te respondemos a la brevedad.
             </p>
           </div>
@@ -189,7 +189,7 @@ export function SpareParts() {
             href="https://wa.me/5492923515685?text=Hola%2C%20quiero%20consultar%20sobre%20repuestos%20y%20suministros"
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 flex items-center gap-2.5 bg-[#25D366] text-white px-6 py-3 font-semibold text-sm hover:bg-[#20ba57] transition-colors"
+            className="shrink-0 flex items-center gap-2.5 bg-whatsapp text-white px-6 py-3 font-semibold text-sm hover:bg-whatsapp-hover transition-colors"
           >
             <WhatsAppIcon className="w-4 h-4" />
             Consultar disponibilidad

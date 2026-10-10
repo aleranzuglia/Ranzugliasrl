@@ -23,7 +23,7 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
       initial={{ opacity: 0, y: -6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
-      className="bg-white border-2 border-zinc-950 rounded-lg p-5 md:p-6"
+      className="bg-white border-2 border-ink rounded-lg p-5 md:p-6"
     >
       <div className="flex items-start gap-4">
         <img
@@ -32,7 +32,7 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
           className="h-8 w-auto object-contain mt-1 shrink-0"
         />
         <div>
-          <h3 className="font-normal text-2xl text-zinc-950 leading-tight">
+          <h3 className="font-normal text-xl text-ink leading-tight">
             Más modelos {marca.nombre}
           </h3>
           <p className="text-sm text-zinc-600 mt-1">
@@ -41,7 +41,7 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
           </p>
           {otrasLineas.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-500">
                 También
               </span>
               {otrasLineas.map((linea) => (
@@ -49,7 +49,7 @@ export function BrandMoreInfo({ marca }: { marca: MarcaOficial }) {
                   key={linea.label}
                   href={linea.url}
                   {...externalProps}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold tracking-wide rounded-full border transition-colors ${marca.estilos.chipTarjeta}`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide rounded-full border transition-colors ${marca.estilos.chipTarjeta}`}
                 >
                   {linea.label}
                   <ExternalLink className="w-3 h-3" aria-hidden="true" />
@@ -75,15 +75,15 @@ export function OfficialBrands({
   const marcas = Object.values(MARCAS_OFICIALES);
 
   return (
-    <section id="representaciones" className="bg-zinc-950 py-20">
+    <section id="representaciones" className="bg-ink py-20">
       <div className="w-full lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] mx-auto px-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-0.5 w-8 bg-yellow-400" />
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-yellow-400">
+          <div className="h-0.5 w-8 bg-accent" />
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-accent">
             Representación oficial
           </span>
         </div>
-        <h2 className="font-normal text-4xl md:text-5xl lg:text-6xl text-white mb-4">
+        <h2 className="font-normal text-2xl md:text-4xl text-white mb-4">
           HANOMAG Y MICHIGAN
         </h2>
         <p className="text-base md:text-lg text-white/70 max-w-3xl mb-12">
@@ -100,7 +100,7 @@ export function OfficialBrands({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col bg-zinc-900 border border-white/10 rounded-lg p-6 md:p-8"
+              className="flex flex-col bg-surface-2 border border-white/10 rounded-lg p-6 md:p-8"
             >
               <img
                 src={marca.logo}
@@ -109,7 +109,7 @@ export function OfficialBrands({
               />
               <p className="text-white/70 mb-6">{marca.descripcion}</p>
 
-              <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-3">
+              <div className="text-xs font-bold tracking-[0.2em] uppercase text-text-muted-on-dark mb-3">
                 Líneas de productos
               </div>
               <div className="flex flex-wrap gap-2 mb-8">
@@ -157,7 +157,7 @@ export function OfficialBrands({
                 <a
                   href={whatsappUrl(marca)}
                   {...externalProps}
-                  className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-transparent bg-[#25D366] text-white px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:bg-[#20ba57]"
+                  className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-transparent bg-whatsapp text-white px-6 py-3.5 text-xs font-semibold tracking-wider uppercase transition-colors hover:bg-whatsapp-hover"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
                   Consultar

@@ -24,7 +24,7 @@ export default function App() {
     setFiltroCatalogo((anterior) => ({ ...filtro, id: (anterior?.id ?? 0) + 1 }));
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-ink text-white">
       <Header />
       <main>
         <Hero />
