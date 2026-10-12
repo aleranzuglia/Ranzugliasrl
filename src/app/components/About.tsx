@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
-import { Image as ImageIcon } from 'lucide-react';
 import hanomagLogo from '../../imports/hanomag/hanomag.png';
 import michiganLogo from '../../imports/michigan/michigan.png';
+import fachadaImg from '../../imports/fachada.webp';
 import { useEntrance } from "../lib/motion";
 import { SectionHeader } from './shared/SectionHeader';
 
@@ -73,18 +73,17 @@ export function About() {
               ))}
             </motion.div>
 
-            {/* TODO: reemplazar el placeholder por una foto real del local o del equipo
-                (agregar el archivo en src/imports y mostrarlo con <img> + alt descriptivo). */}
-            <div
-              role="img"
-              aria-label="Espacio reservado para una foto del local o del equipo"
-              className="aspect-[4/3] w-full border-2 border-dashed border-white/20 bg-surface-2 flex flex-col items-center justify-center gap-2 text-text-muted-on-dark"
-            >
-              <ImageIcon className="w-10 h-10" aria-hidden="true" />
-              <span className="text-xs font-bold tracking-wider uppercase">
-                Foto del local o del equipo
-              </span>
-            </div>
+            <motion.div {...reveal(4)} className="overflow-hidden border border-white/10">
+              <img
+                src={fachadaImg}
+                alt="Fachada del local de Humberto Ranzuglia S.R.L. en Coronel Pringles, con vidrieras de maquinaria"
+                width={996}
+                height={669}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[3/2] w-full object-cover"
+              />
+            </motion.div>
           </div>
         </div>
       </div>
