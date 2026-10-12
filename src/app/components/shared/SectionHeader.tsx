@@ -1,23 +1,20 @@
 import type { ReactNode } from "react";
 import { cn } from "../ui/utils";
 
-// Encabezado de seccion: eyebrow (con linea), titulo (h2, Anton) y bajada opcional.
+// Encabezado de seccion: eyebrow, titulo (h2, Anton) y bajada opcional.
 // tone: "dark" (fondo oscuro), "light" (fondo claro) o "accent" (fondo amarillo).
 const TONES = {
   dark: {
-    bar: "bg-accent",
     eyebrow: "text-accent",
     title: "text-white",
     description: "text-text-muted-on-dark",
   },
   light: {
-    bar: "bg-zinc-500",
     eyebrow: "text-zinc-500",
     title: "text-ink",
     description: "text-zinc-600",
   },
   accent: {
-    bar: "bg-ink/80",
     eyebrow: "text-ink/80",
     title: "text-ink",
     description: "text-ink/80",
@@ -48,25 +45,14 @@ export function SectionHeader({
 
   return (
     <div className={cn(centered && "text-center", className)}>
-      <div
+      <span
         className={cn(
-          "mb-4 flex items-center gap-3",
-          centered && "justify-center",
+          "mb-4 block text-xs font-bold uppercase tracking-[0.2em]",
+          colors.eyebrow,
         )}
       >
-        <div className={cn("h-0.5 w-8", colors.bar)} aria-hidden="true" />
-        <span
-          className={cn(
-            "text-xs font-bold uppercase tracking-[0.2em]",
-            colors.eyebrow,
-          )}
-        >
-          {eyebrow}
-        </span>
-        {centered && (
-          <div className={cn("h-0.5 w-8", colors.bar)} aria-hidden="true" />
-        )}
-      </div>
+        {eyebrow}
+      </span>
       <h2
         className={cn(
           "font-normal text-2xl md:text-4xl",

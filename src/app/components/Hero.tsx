@@ -91,8 +91,7 @@ export function Hero() {
             {...enter(0, { x: -30 })}
             className="relative z-20 max-w-full md:max-w-[32rem] pr-8 xl:max-w-3xl"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-0.5 w-12 bg-accent" />
+            <div className="mb-6">
               <span className="text-xs font-bold tracking-[0.3em] uppercase text-accent">
                 Coronel Pringles · Buenos Aires
               </span>
