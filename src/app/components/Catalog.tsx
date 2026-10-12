@@ -1,8 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import {
   Search,
-  Grid3x3,
-  List,
   X,
   Plus,
   Check,
@@ -23,7 +21,6 @@ import { BrandMoreInfo } from "./OfficialBrands";
 import { ProductCard } from "./shared/ProductCard";
 import { ProductModal } from "./ProductModal";
 import { CompareDrawer } from "./CompareDrawer";
-import { Tooltip } from "./Tooltip";
 import sinResultados from "../../imports/no-se-encuentra.svg?url";
 import { scrollBehavior, useEntrance } from "../lib/motion";
 import { SectionHeader } from "./shared/SectionHeader";
@@ -45,7 +42,6 @@ export function Catalog({
   const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [activeBrand, setActiveBrand] = useState<string>("todas");
   const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [compareDrawerOpen, setCompareDrawerOpen] = useState(false);
   const [itemsToShow, setItemsToShow] = useState(12);
@@ -303,44 +299,14 @@ export function Catalog({
         </div>
 
         {/* Results Count */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="mb-6">
           <p className="text-sm text-zinc-500">
             Mostrando {visibleProducts.length} de {filteredProducts.length}{" "}
             {filteredProducts.length === 1 ? "producto" : "productos"}
           </p>
-
-          {/* View Mode Toggle */}
-          <div className="gap-2 bg-white border border-zinc-300 rounded-lg p-1 hidden md:flex">
-            <Tooltip text="Vista en cuadrícula" position="bottom">
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`p-2 rounded transition-colors cursor-pointer ${
-                  viewMode === "grid"
-                    ? "bg-ink text-white"
-                    : "text-zinc-400 hover:text-ink"
-                }`}
-                aria-label="Vista en cuadrícula"
-              >
-                <Grid3x3 className="w-5 h-5" />
-              </button>
-            </Tooltip>
-            <Tooltip text="Vista en lista" position="bottom">
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-2 rounded transition-colors cursor-pointer ${
-                  viewMode === "list"
-                    ? "bg-ink text-white"
-                    : "text-zinc-400 hover:text-ink"
-                }`}
-                aria-label="Vista en lista"
-              >
-                <List className="w-5 h-5" />
-              </button>
-            </Tooltip>
-          </div>
         </div>
 
-        {/* Products Grid/List */}
+        {/* Products Grid */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-20">
             
@@ -368,18 +334,11 @@ export function Catalog({
             </button>
           </div>
         ) : (
-          <div
-            className={
-              viewMode === "grid"
-                ? "grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                : "space-y-4"
-            }
-          >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {visibleProducts.map((product, index) => (
               <ProductCard
                 key={product.id}
                 product={product}
-                viewMode={viewMode}
                 index={index}
                 onViewDetails={() => setSelectedProduct(product)}
                 onToggleCompare={() => toggleCompare(product)}
