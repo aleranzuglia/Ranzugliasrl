@@ -12,6 +12,28 @@ interface ProductModalProps {
   onClose: () => void;
 }
 
+// Acordeón con la ficha técnica completa del producto.
+function FichaTecnica({ specs }: { specs: { label: string; value: string }[] }) {
+  return (
+    <details className="group border border-zinc-200 rounded-md">
+      <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold tracking-wider uppercase text-ink flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+        Ficha técnica completa
+        <span className="text-zinc-400 transition-transform group-open:rotate-180">▾</span>
+      </summary>
+      <dl className="px-4 pb-4 divide-y divide-zinc-100 text-sm">
+        {specs.map((spec) => (
+          <div key={spec.label} className="grid grid-cols-[1fr_1.3fr] gap-3 py-2">
+            <dt className="text-xs font-bold tracking-wider uppercase text-zinc-400">
+              {spec.label}
+            </dt>
+            <dd className="font-semibold text-ink">{spec.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </details>
+  );
+}
+
 export function ProductModal({
   product,
   onClose,
@@ -171,6 +193,12 @@ function ProductDetail({
                 {product.nombre}
               </h2>
             </div>
+
+            {product.specs && product.specs.length > 0 && (
+              <div className="hidden px-6 pb-6 md:block">
+                <FichaTecnica specs={product.specs} />
+              </div>
+            )}
           </div>
 
           {/* Content */}
@@ -233,28 +261,15 @@ function ProductDetail({
               </div>
             )}
 
-            {/* Ficha técnica completa */}
+            {/* Ficha técnica completa: en celular va acá; desde md va bajo el título (columna izquierda) */}
             {product.specs && product.specs.length > 0 && (
-              <details className="group mb-6 border border-zinc-200 rounded-md">
-                <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold tracking-wider uppercase text-ink flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
-                  Ficha técnica completa
-                  <span className="text-zinc-400 transition-transform group-open:rotate-180">▾</span>
-                </summary>
-                <dl className="px-4 pb-4 divide-y divide-zinc-100 text-sm">
-                  {product.specs.map((spec) => (
-                    <div key={spec.label} className="grid grid-cols-[1fr_1.3fr] gap-3 py-2">
-                      <dt className="text-xs font-bold tracking-wider uppercase text-zinc-400">
-                        {spec.label}
-                      </dt>
-                      <dd className="font-semibold text-ink">{spec.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </details>
+              <div className="mb-6 md:hidden">
+                <FichaTecnica specs={product.specs} />
+              </div>
             )}
 
             {/* Actions */}
-            <div className="mt-auto flex flex-col gap-3">
+            <div className="flex flex-col gap-3">
               <Button onClick={scrollToContact} className="w-full">
                 Pedir presupuesto
               </Button>
