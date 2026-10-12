@@ -375,10 +375,11 @@ export function Financing() {
                 ))}
               </div>
 
-              {/* CTA */}
+              {/* CTA: mismo ancho que ocupan las dos cards de arriba (dos de las tres columnas) */}
+              <div className="max-w-7xl mx-auto">
               <motion.div
                 {...enter(3)}
-                className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 bg-accent/10 border border-accent/30 rounded-xl px-8 py-6 max-w-3xl mx-auto"
+                className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 bg-accent/10 border border-accent/30 rounded-xl px-8 py-6 w-full lg:w-[calc((100%-3rem)*2/3+1.5rem)] mx-auto"
               >
                 <div>
                   <p className="text-white font-semibold text-lg leading-snug">
@@ -398,6 +399,7 @@ export function Financing() {
                   Consultar precio →
                 </Button>
               </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
