@@ -71,13 +71,13 @@ export function BrandCard({
         )}
       </div>
 
-      <div className="mt-auto flex flex-col gap-3">
+      <div className="mt-auto flex flex-col gap-3 lg:flex-row">
         <Button
           variant="secondary"
           tone="dark"
           size="sm"
           href={marca.url}
-          className="w-full"
+          className="w-full whitespace-nowrap lg:flex-[3] lg:px-4 lg:text-xs"
           {...externalProps}
         >
           Ver catálogo completo
@@ -87,7 +87,7 @@ export function BrandCard({
           variant="whatsapp"
           size="sm"
           href={whatsappUrl(marca)}
-          className="w-full"
+          className="w-full whitespace-nowrap lg:flex-[2] lg:px-4 lg:text-xs"
           {...externalProps}
         >
           <WhatsAppIcon className="w-4 h-4" />
