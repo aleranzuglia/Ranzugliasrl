@@ -129,7 +129,7 @@ function ProductDetail({
         <div className="grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           {/* Image */}
           <div
-            className={`${hasGallery || product.fotoCompleta ? "bg-white" : getBrandColor(product.marca)} flex flex-col min-h-[250px]`}
+            className={`${hasGallery || product.fotoCompleta ? "bg-white" : getBrandColor(product.marca)} flex flex-col min-h-[250px] md:max-h-[calc(80vh-4px)] md:overflow-y-auto md:overscroll-contain md:[&>*]:shrink-0`}
           >
             <div className={hasGallery ? "h-80 overflow-hidden relative" : product.fotoCompleta ? "flex-1 overflow-hidden" : "flex-1 flex items-center justify-center p-4"}>
               {activeImage ? (
@@ -202,7 +202,7 @@ function ProductDetail({
           </div>
 
           {/* Content */}
-          <div className="p-8 md:pt-16 flex flex-col max-h-full overflow-y-auto">
+          <div className="p-8 md:pt-16 flex flex-col md:max-h-[calc(80vh-4px)] md:overflow-y-auto md:overscroll-contain">
             <p className="text-sm text-zinc-600 leading-relaxed mb-6">
               {product.descripcion}
             </p>
