@@ -254,11 +254,11 @@ function ProductDetail({
             )}
 
             {/* Actions */}
-            <div className="mt-auto space-y-3 lg:space-y-0 lg:space-x-3 flex flex-col lg:flex-row">
-              <Button onClick={scrollToContact} className="w-full px-4">
+            <div className="mt-auto flex flex-col gap-3">
+              <Button onClick={scrollToContact} className="w-full">
                 Pedir presupuesto
               </Button>
-              <Button variant="whatsapp" onClick={handleWhatsApp} className="w-full px-4">
+              <Button variant="whatsapp" onClick={handleWhatsApp} className="w-full">
                 <WhatsAppIcon className="w-4 h-4" />
                 Consultar
               </Button>
