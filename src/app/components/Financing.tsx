@@ -293,12 +293,12 @@ export function Financing() {
                 propias de cada fabricante.
               </p>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
                 {factoryOptions.map((brand, index) => (
                   <motion.div
                     key={brand.name}
                     {...enter(index)}
-                    className="bg-white/5 border border-white/10 rounded-xl overflow-hidden"
+                    className="w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] bg-white/5 border border-white/10 rounded-xl overflow-hidden"
                   >
                     {/* Card header */}
                     <div className="bg-white/8 border-b border-white/10 px-7 py-5 flex items-center justify-between">
