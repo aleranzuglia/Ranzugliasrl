@@ -61,7 +61,7 @@ export function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-          to: "ranzugliasrl@gmail.com",
+          to: "humbertoranzugliasrl@gmail.com",
           subject: `Consulta de ${formState.nombre} — ${formState.tipo || "sin categoría"}`,
           from_name: "Ranzuglia SRL Web",
           nombre: formState.nombre,
@@ -148,8 +148,8 @@ export function Contact() {
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      value: "ranzugliasrl@gmail.com",
-      link: "mailto:ranzugliasrl@gmail.com",
+      value: "humbertoranzugliasrl@gmail.com",
+      link: "mailto:humbertoranzugliasrl@gmail.com",
     },
     {
       icon: <Instagram className="w-5 h-5" />,

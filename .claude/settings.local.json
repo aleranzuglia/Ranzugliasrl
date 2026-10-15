@@ -12,5 +12,8 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(grep -E \"\\\\.\\(ts|tsx|js|jsx\\)$\")"
     ]
+  },
+  "enabledPlugins": {
+    "mercadopago@claude-plugins-official": false
   }
 }
