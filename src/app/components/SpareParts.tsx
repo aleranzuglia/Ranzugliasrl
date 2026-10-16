@@ -27,7 +27,7 @@ const categories = [
     headline: "Piezas certificadas, siempre disponibles",
     description:
       "Stock de repuestos originales para todas las marcas que comercializamos. Cada pieza está certificada de fábrica para garantizar el rendimiento y la vida útil de tu maquinaria.",
-    highlights: ["Hanomag", "Michigan", "Pauny", "Gravo", "Gherardi", "Pampero", "SYL", "Belén"],
+    highlights: ["Hanomag", "Michigan", "Pauny", "Gherardi", "Pampero", "SYL", "Belén"],
     paymentDays: null,
   },
   {

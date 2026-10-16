@@ -8,7 +8,6 @@ import belenLogo from "../../imports/marcas/belen.png";
 import demsLogo from "../../imports/marcas/dems.png";
 import fametLogo from "../../imports/marcas/famet.jpg";
 import tecnocarLogo from "../../imports/marcas/tecnocar.png";
-import distrimaqLogo from "../../imports/marcas/distrimaq.webp";
 import sylLogo from "../../imports/marcas/syl.webp";
 import { SectionHeader } from "./shared/SectionHeader";
 
@@ -23,7 +22,6 @@ const brands: Brand[] = [
   { name: "Hanomag",   image: hanomagLogo,   href: "https://www.hanomag.com.ar" },
   { name: "Michigan",  image: michiganLogo,  href: "https://www.michiganweb.com.ar" },
   { name: "Pauny",     image: paunyLogo,     href: "https://www.pauny.com.ar" },
-  { name: "GRAVO",     text: true },
   { name: "Gherardi",  image: gherardiLogo,  href: "https://www.gherardi.com.ar" },
   { name: "Bertini",   image: bertiniLogo,   href: "https://www.bertini.com.ar" },
   { name: "Pampero",   image: pamperoLogo,   href: "https://mpampero.com.ar" },
@@ -32,7 +30,6 @@ const brands: Brand[] = [
   { name: "Famet",     image: fametLogo,     href: "https://www.famet.com.ar/" },
   { name: "SYL",       image: sylLogo,       href: "https://www.instagram.com/syl.implementos/?hl=es" },
   { name: "Tecnocar",  image: tecnocarLogo,  href: "https://tecnocar.com.ar" },
-  { name: "Distrimaq", image: distrimaqLogo, href: "https://distrimaqweb.com.ar" },
 ];
 
 function BrandCard({ brand }: { brand: Brand }) {
